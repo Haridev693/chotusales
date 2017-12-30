@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.refresh.chotusalesv1.ui.mainui.SettingsActivity"
+    android:background="#e5f1d0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="20sp"
+        android:text="General Settings"
+        android:gravity="center"
+        android:background="#f4d598"
+        android:textColor="#000"
+        android:textStyle="bold"/>
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" -->
+        <!--android:text="Printer Header"/>-->
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#fff">
+        <EditText android:id="@+id/printerHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|textMultiLine"
+            android:lines="3"
+            android:hint="@string/enter_printer_header"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#fff">
+        <EditText android:id="@+id/printerFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|textMultiLine"
+            android:lines="3"
+            android:hint="@string/enter_printer_footer"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal"
+        android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Bluetooth Address"
+                android:textColorHint="#0d766d"
+                android:textSize="20sp"
+                android:layout_weight="0.60"
+                android:paddingStart="10dp"
+                android:id="@+id/bluetoothAdress"
+                />
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.40"
+            android:text="Scan Bluetooth"
+            android:textColor="#000000"
+            android:background="#aaf998"
+            android:id="@+id/btnBluetoothscan"/>
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#fff">
+        <EditText android:id="@+id/VatNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|number"
+            android:lines="3"
+            android:hint="@string/enter_vat_number"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Disable Printer"
+            android:textSize="20sp"
+            android:id="@+id/CheckEnablePrinter"
+
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="20sp"
+            android:text="SMS Settings"
+            android:gravity="center"
+            android:background="#f4d598"
+            android:textColor="#000"
+            android:textStyle="bold"/>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enable SMS"
+            android:textSize="20sp"
+            android:id="@+id/checkSMSenabled"
+            />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#fff">
+            <EditText android:id="@+id/SMSSenderID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:lines="3"
+                android:hint="Enter SenderID"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#fff">
+            <EditText android:id="@+id/SMSKey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:lines="3"
+                android:hint="Enter SMS Key"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#fff">
+            <EditText android:id="@+id/SMSUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:lines="3"
+                android:hint="Enter SMS Username"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btncheckUnits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check SMS Units"
+            android:textSize="20sp"
+            />
+
+
+
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" android:orientation="vertical"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:gravity="bottom"-->
+            <!--android:baselineAligned="false">-->
+
+            <!--</LinearLayout>-->
+
+        <!--</RelativeLayout>-->
+
+    </LinearLayout>
+
+    </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/btncancel"
+            android:layout_weight="0.5"
+            android:background="@drawable/btn_red"
+            android:id="@+id/btnCancel"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/save_settings"
+            android:layout_weight="0.5"
+            android:background="@drawable/btn_green"
+            android:id="@+id/btnSaveSettings"
+            />
+    </LinearLayout>
+
+
+
+
+<!--<AutoCompleteTextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+
+</RelativeLayout>

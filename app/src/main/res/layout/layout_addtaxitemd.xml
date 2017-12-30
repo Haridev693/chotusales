@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/addtaxitemD"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tax_name"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:fontFamily=""/>
+
+    <EditText
+        android:id="@+id/taxnameBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="20"
+        android:inputType="text"
+        android:textSize="18sp" />
+
+    <requestFocus />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tax Percentage"
+        android:textSize="20sp"
+        android:textColor="#000"/>
+
+    <EditText
+        android:id="@+id/percentBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="20"
+        android:inputType="numberDecimal"
+        android:textSize="18sp"
+        />
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="30dip"-->
+
+        <!--android:orientation="horizontal">-->
+
+
+    <!--<TextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Is Price Inclusive"-->
+        <!--android:layout_weight="0.75"-->
+        <!--android:textSize="20sp" />-->
+
+    <CheckBox
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Is Inclusive Price"
+        android:textSize="20sp"
+        android:id="@+id/IsPriceInclusive"/>
+    <!--</LinearLayout>-->
+
+    <!--<Space-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="20dip" />-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/addtaxDclearButton"
+            style="@style/ButtonText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/btn_red"
+            android:text="@string/clear"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/addtaxDconfirmButton"
+            style="@style/ButtonText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/btn_green"
+            android:text="@string/confirm"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,484 @@
+[
+    {
+        "outputFile": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 49,
+                    "endOffset": 100
+                },
+                "from": {
+                    "file": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\values-sw600dp\\colors.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 288,
+                        "endColumn": 49,
+                        "endOffset": 333
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 105,
+                    "endColumn": 47,
+                    "endOffset": 148
+                },
+                "from": {
+                    "file": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\values-sw600dp\\colors.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 339,
+                        "endColumn": 47,
+                        "endOffset": 382
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 153,
+                    "endColumn": 39,
+                    "endOffset": 188
+                },
+                "from": {
+                    "file": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\values-sw600dp\\colors.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 247,
+                        "endColumn": 39,
+                        "endOffset": 282
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 193,
+                    "endColumn": 41,
+                    "endOffset": 230
+                },
+                "from": {
+                    "file": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\values-sw600dp\\colors.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 204,
+                        "endColumn": 41,
+                        "endOffset": 241
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 235,
+                    "endColumn": 45,
+                    "endOffset": 276
+                },
+                "from": {
+                    "file": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\values-sw600dp\\colors.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 157,
+                        "endColumn": 45,
+                        "endOffset": 198
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 281,
+                    "endColumn": 46,
+                    "endOffset": 323
+                },
+                "from": {
+                    "file": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\values-sw600dp\\colors.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 57,
+                        "endColumn": 46,
+                        "endOffset": 99
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 328,
+                    "endColumn": 50,
+                    "endOffset": 374
+                },
+                "from": {
+                    "file": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\values-sw600dp\\colors.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 105,
+                        "endColumn": 50,
+                        "endOffset": 151
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 379,
+                    "endColumn": 68,
+                    "endOffset": 443
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\113dce72148482c90de0d432e1f57bc287e0ce12\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 68,
+                        "endOffset": 119
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 448,
+                    "endColumn": 68,
+                    "endOffset": 512
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\113dce72148482c90de0d432e1f57bc287e0ce12\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 124,
+                        "endColumn": 68,
+                        "endOffset": 188
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 517,
+                    "endColumn": 69,
+                    "endOffset": 582
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\113dce72148482c90de0d432e1f57bc287e0ce12\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 193,
+                        "endColumn": 69,
+                        "endOffset": 258
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 587,
+                    "endColumn": 73,
+                    "endOffset": 656
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\113dce72148482c90de0d432e1f57bc287e0ce12\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 263,
+                        "endColumn": 73,
+                        "endOffset": 332
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 661,
+                    "endColumn": 75,
+                    "endOffset": 732
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\113dce72148482c90de0d432e1f57bc287e0ce12\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 337,
+                        "endColumn": 75,
+                        "endOffset": 408
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 737,
+                    "endColumn": 58,
+                    "endOffset": 791
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\113dce72148482c90de0d432e1f57bc287e0ce12\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 413,
+                        "endColumn": 58,
+                        "endOffset": 467
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 796,
+                    "endColumn": 70,
+                    "endOffset": 862
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\113dce72148482c90de0d432e1f57bc287e0ce12\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 472,
+                        "endColumn": 70,
+                        "endOffset": 538
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 867,
+                    "endColumn": 67,
+                    "endOffset": 930
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\113dce72148482c90de0d432e1f57bc287e0ce12\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 543,
+                        "endColumn": 67,
+                        "endOffset": 606
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 935,
+                    "endColumn": 59,
+                    "endOffset": 990
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\6f701382ca463fd0ddeaf08f271149c0d9737603\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 59,
+                        "endOffset": 110
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 995,
+                    "endColumn": 69,
+                    "endOffset": 1060
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\6f701382ca463fd0ddeaf08f271149c0d9737603\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 115,
+                        "endColumn": 69,
+                        "endOffset": 180
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 1065,
+                    "endColumn": 70,
+                    "endOffset": 1131
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\6f701382ca463fd0ddeaf08f271149c0d9737603\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 185,
+                        "endColumn": 70,
+                        "endOffset": 251
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1136,
+                    "endColumn": 71,
+                    "endOffset": 1203
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\6f701382ca463fd0ddeaf08f271149c0d9737603\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 256,
+                        "endColumn": 71,
+                        "endOffset": 323
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 1208,
+                    "endColumn": 57,
+                    "endOffset": 1261
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\6f701382ca463fd0ddeaf08f271149c0d9737603\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 328,
+                        "endColumn": 57,
+                        "endOffset": 381
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1266,
+                    "endColumn": 57,
+                    "endOffset": 1319
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\6f701382ca463fd0ddeaf08f271149c0d9737603\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 386,
+                        "endColumn": 57,
+                        "endOffset": 439
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 1324,
+                    "endColumn": 105,
+                    "endOffset": 1425
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\6f701382ca463fd0ddeaf08f271149c0d9737603\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 444,
+                        "endColumn": 105,
+                        "endOffset": 545
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 1430,
+                    "endColumn": 63,
+                    "endOffset": 1489
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\6f701382ca463fd0ddeaf08f271149c0d9737603\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 550,
+                        "endColumn": 63,
+                        "endOffset": 609
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 1494,
+                    "endColumn": 62,
+                    "endOffset": 1552
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\6f701382ca463fd0ddeaf08f271149c0d9737603\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 614,
+                        "endColumn": 62,
+                        "endOffset": 672
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 1557,
+                    "endLine": 29,
+                    "endColumn": 12,
+                    "endOffset": 1734
+                },
+                "from": {
+                    "file": "C:\\Users\\Lenovo\\AppData\\Local\\Android\\sdk\\.android\\build-cache\\6f701382ca463fd0ddeaf08f271149c0d9737603\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 677,
+                        "endLine": 14,
+                        "endColumn": 12,
+                        "endOffset": 854
+                    }
+                }
+            }
+        ]
+    }
+]

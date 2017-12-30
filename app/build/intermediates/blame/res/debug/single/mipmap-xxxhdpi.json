@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\addicon.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-xxxhdpi\\addicon.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\percent.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-xxxhdpi\\percent.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\taxicons.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-xxxhdpi\\taxicons.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\dbicon.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-xxxhdpi\\dbicon.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\help.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-xxxhdpi\\help.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\chotusalesnewlogod.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-xxxhdpi\\chotusalesnewlogod.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\settings.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-xxxhdpi\\settings.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\usersetting.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-xxxhdpi\\usersetting.png"
+    }
+]

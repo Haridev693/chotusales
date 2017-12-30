@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.refresh.chotusalesv1.ui.mainui.DashboardScreen"
+    android:weightSum="2" android:orientation="vertical"
+    android:background="#d0ece9">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/chotusalesnewlogoweb"
+        />
+
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="50dp" />
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.5"-->
+        <!--android:orientation="vertical"-->
+        <!--android:weightSum="1">-->
+
+        <android.support.v7.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            app:rowCount="3"
+            app:useDefaultMargins="true"
+            app:columnCount="2">
+
+
+            <ImageButton
+                app:layout_row="0"
+                app:layout_column="0"
+                app:layout_rowWeight="0.5"
+                app:layout_columnWeight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_launcher"
+                android:scaleType="fitCenter"
+                android:background="#f1dcdc"
+                android:id="@+id/loadChotuSales"
+                />
+
+            <ImageButton
+                app:layout_row="0"
+                app:layout_column="1"
+                app:layout_rowWeight="0.5"
+                app:layout_columnWeight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/settings"
+                android:scaleType="fitCenter"
+                android:background="#bcf4ba"
+                android:id="@+id/loadSettings"
+                />
+
+            <ImageButton
+                app:layout_row="1"
+                app:layout_column="0"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_rowWeight="0.5"
+                app:layout_columnWeight="0.5"
+                android:src="@drawable/percent"
+                android:scaleType="fitCenter"
+                android:background="#bcf4ba"
+                android:id="@+id/loadtaxsettings"
+                />
+
+            <ImageButton
+                app:layout_row="1"
+                app:layout_column="1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_rowWeight="0.5"
+                app:layout_columnWeight="0.5"
+                android:src="@drawable/dbicon"
+                android:scaleType="fitCenter"
+                android:background="#f1dcdc"
+                android:id="@+id/dbsettings"
+                />
+
+            <!--<ImageButton-->
+                <!--app:layout_row="2"-->
+                <!--app:layout_column="0"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--app:layout_rowWeight="0.5"-->
+                <!--app:layout_columnWeight="0.5"-->
+                <!--android:src="@drawable/help"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:background="#f1dcdc"-->
+                <!--android:id="@+id/help"-->
+                <!--/>-->
+
+            <!--<ImageButton-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--app:layout_row="0"-->
+                <!--app:layout_column="0"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:src="@drawable/taxicons"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:background="#f1dcdc"-->
+                <!--android:id="@+id/loadChotuSales"-->
+                <!--/>-->
+
+            <!--<ImageButton-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:src="@drawable/settings"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:background="#bcf4ba"-->
+                <!--android:id="@+id/loadSettings"-->
+                <!--/>-->
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="@string/load_chotusales"-->
+            <!--android:id="@+id/loadChotuSales"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textAlignment="viewStart"-->
+            <!--android:layout_gravity="start"-->
+            <!--android:background="#f1dcdc"-->
+            <!---->
+            <!--/>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="0.5"-->
+            <!--android:orientation="vertical"-->
+            <!--android:weightSum="1">-->
+
+        <!--<ImageButton-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="0.50"-->
+            <!--android:background="#bcf4ba"-->
+            <!--android:text="@string/settings"-->
+            <!--android:textStyle="bold"-->
+            <!--android:id="@+id/loadSettings"-->
+            <!--/>-->
+            <!--</LinearLayout>-->
+
+    </android.support.v7.widget.GridLayout>
+
+
+</LinearLayout>

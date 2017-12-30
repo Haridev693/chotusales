@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\taxicons.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\drawable-mdpi\\taxicons.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_action_overflow.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\drawable-mdpi\\ic_action_overflow.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\chotusaleslogo.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\drawable-mdpi\\chotusaleslogo.png"
+    }
+]

@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\percent.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-mdpi\\percent.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\dbicon.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-mdpi\\dbicon.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\settings.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-mdpi\\settings.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\help.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-mdpi\\help.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\usersetting.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-mdpi\\usersetting.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\taxicons.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-mdpi\\taxicons.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\addicon.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-mdpi\\addicon.png"
+    },
+    {
+        "merged": "F:\\Code Examples\\pos-master\\pos-master\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\chotusalesnewlogo.png",
+        "source": "F:\\Code Examples\\pos-master\\pos-master\\app\\src\\main\\res\\mipmap-mdpi\\chotusalesnewlogo.png"
+    }
+]
