@@ -223,7 +223,7 @@ public class SaleFragment extends UpdatableFragment {
 
 				register.setTranTrax(TrantaxEnable);
 				Double NewSubTotal = register.getSubTotal();
-cvghj ''				register.setSubTotal(NewSubTotal);
+                register.setSubTotal(NewSubTotal);
 				Double CGST = round(((NewSubTotal * ShopSetting.CGSTPercent) / 100),2);
 				register.setCGST(CGST);
 				Double SGST = round(((NewSubTotal * ShopSetting.SGSTPercent) / 100),2);
