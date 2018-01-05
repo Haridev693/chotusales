@@ -25,11 +25,18 @@ public class Sale {
 	private List<LineItem> items;
 	private int buyerid;
 	private String buyername;
+	private String buyerPhone;
 	private String PayType;
+	private Double Discount=0.0;
+	private Double CGST=0.0;
+	private Boolean TranTax;
+	private Double SGST=0.0;
+	public Double Total, SubTotal, Tax =0.0;
+//	private Double IGST;
 	
 
 	public Sale(int id, String startTime) {
-		this(id, startTime, startTime, "", new ArrayList<LineItem>(),"");
+		this(id, startTime, startTime, "", new ArrayList<LineItem>(),"",0.0,false,0.0);
 	}
 	
 	/**
@@ -40,13 +47,17 @@ public class Sale {
 	 * @param status status of this Sale.
 	 * @param items list of LineItem in this Sale.
 	 */
-	public Sale(int id, String startTime, String endTime, String status, List<LineItem> items, String PayType) {
+	public Sale(int id, String startTime, String endTime, String status, List<LineItem> items, String PayType, Double Total, Boolean TranType, Double Discounts) {
 			this.id = id;
 		this.startTime = startTime;
 		this.status = status;
 		this.endTime = endTime;
 		this.items = items;
 		this.PayType = PayType;
+		this.Discount =0.0;
+		this.Total = Total;
+		this.setTranTax(TranType);
+		this.setDiscount(Discounts);
 	}
 	
 	/**
@@ -98,22 +109,25 @@ public class Sale {
 	 * @return the total price of this Sale.
 	 */
 	public double getTotal() {
-		double amount = 0;
-		double taxSum = 0;
-		for(LineItem lineItem : items) {
-			taxSum = lineItem.getTotalTaxAtSale() + lineItem.getTotalPriceAtSale();
-			amount += taxSum;
-		}
-		return round(amount,2);
+			double amount = 0;
+			double taxSum = 0;
+			for (LineItem lineItem : items) {
+				taxSum = lineItem.getTotalTaxAtSale() + lineItem.getTotalPriceAtSale();
+				amount += taxSum;
+			}
+			return round(amount, 2);
+//		}
 	}
 
 
 	public double getSubTotal() {
-		double amount = 0;
-		for(LineItem lineItem : items) {
-			amount += lineItem.getTotalPriceAtSale();
-		}
-		return round(amount,2);
+
+			double amount = 0;
+			for (LineItem lineItem : items) {
+				amount += lineItem.getTotalPriceAtSale();
+			}
+			return round(amount, 2);
+//		}
 	}
 
 
@@ -124,6 +138,7 @@ public class Sale {
 		}
 		return round(amount,2);
 	}
+
 
 	public int getId() {
 		return id;
@@ -163,9 +178,10 @@ public class Sale {
 		map.put("startTime", startTime);
 		map.put("endTime", endTime);
 		map.put("status", getStatus());
-		map.put("total", getTotal() + "");
+		map.put("total", round(getTotal()-getDiscount(),2) + "");
 		map.put("tax", getTaxTotal()+"");
 		map.put("buyername",buyername);
+		map.put("buyerphone",buyerPhone);
 		map.put("buyerid",getBuyerid()+"");
 		map.put("orders", getOrders() + "");
 		map.put("PayType",PayType);
@@ -202,10 +218,57 @@ public class Sale {
 		return buyername;
 	}
 
-	public void SetBuyername(String name){
-		buyername =name;
+	public void SetBuyername(String name)
+	{
+		this.buyername = name;
+	}
+
+	public void setDiscount(Double disc){
+		Discount =disc;
+	}
+
+	public Double getDiscount(){
+		return Discount;
 	}
 
 
+	public Boolean getTranTax() {
+		return TranTax;
+	}
 
+	public void setTranTax(Boolean tranTax) {
+		TranTax = tranTax;
+	}
+
+	public Double getSGST() {
+		return SGST;
+	}
+
+	public void setSGST(Double SGST) {
+		this.SGST = SGST;
+	}
+
+	public Double getCGST() {
+		return CGST;
+	}
+
+	public void setCGST(Double CGST) {
+		this.CGST = CGST;
+	}
+
+	public void setTotal(Double total) {
+		Total = total;
+	}
+
+	public void setSubTotal(Double subTotal) {
+		SubTotal = subTotal;
+	}
+
+	public void setTax(Double tax) {
+		Tax = tax;
+	}
+
+	public void setBuyerPhone(String buyerPhone) {
+		this.buyerPhone = buyerPhone;
+	}
 }

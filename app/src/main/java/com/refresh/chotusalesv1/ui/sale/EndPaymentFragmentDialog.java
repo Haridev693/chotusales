@@ -19,6 +19,7 @@ import com.refresh.chotusalesv1.domain.DateTimeStrategy;
 import com.refresh.chotusalesv1.domain.Settings;
 import com.refresh.chotusalesv1.domain.inventory.LineItem;
 import com.refresh.chotusalesv1.domain.sale.Register;
+import com.refresh.chotusalesv1.domain.salessettings.taxSettings;
 import com.refresh.chotusalesv1.staticpackage.DatabaseStat;
 import com.refresh.chotusalesv1.techicalservices.BluetoothService;
 import com.refresh.chotusalesv1.techicalservices.connectivity;
@@ -27,6 +28,7 @@ import com.refresh.chotusalesv1.ui.component.UpdatableFragment;
 import com.refresh.chotusalesv1.utils.commands.Command;
 import com.refresh.chotusalesv1.utils.commands.PrinterCommand;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import okhttp3.ResponseBody;
@@ -52,6 +54,7 @@ import static com.refresh.chotusalesv1.utils.commands.Command.LF;
 public class EndPaymentFragmentDialog extends DialogFragment  {
 
 	private static final String TAG = "";
+	private DatabaseStat dataStat;
 	private Settings ShopSetting = new Settings();
 	private Button doneButton;
 	private TextView chg;
@@ -59,6 +62,7 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 	private UpdatableFragment saleFragment;
 	private UpdatableFragment reportFragment;
 	private String buyerName, buyerPhone;
+	private Double Discounts;
 
 
 
@@ -80,6 +84,9 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 	private smsapiops smssender;
 	private String PayType;
     private Activity Act;
+	private ArrayList<taxSettings> taxsetting;
+	private boolean PrintGST,PrintTranGST;
+	private Double SGSTTranTax,CGSTTranTax;
 //	private Register register;
 //	private Settings ShopSetting;
 //	private Handler mHandler;
@@ -95,9 +102,7 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 		this.saleFragment = saleFragment;
 		this.reportFragment = reportFragment;
 
-//		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-//		mService = new BluetoothService(getActivity(),mHandler);
-//		initPrinter();
+//		this.dataStat = new DatabaseStat(getActivity().getApplicationContext());
 	}
 
 
@@ -121,6 +126,23 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 				ShopSetting = DBStat.settingDaoD.getSettings(email).get(0);
 			}
 		}
+
+		if(ShopSetting==null){}
+		else if(ShopSetting.CheckPrintGSTProds==null){}
+		else if(ShopSetting.CheckPrintGSTProds){
+			PrintGST = true;
+		}
+
+		if(ShopSetting==null){}
+		else if(ShopSetting.CheckPrintTranGST==null){}
+		else if(ShopSetting.CheckPrintTranGST){
+			PrintTranGST = true;
+			CGSTTranTax = ShopSetting.CGSTPercent;
+			SGSTTranTax = ShopSetting.SGSTPercent;
+		}
+
+
+		taxsetting = DBStat.getTaxSettings();
 //		try {
 			regis = new Register(getActivity().getApplicationContext());
 //		} catch (NoDaoSetException e) {
@@ -129,6 +151,7 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 		
 		View v = inflater.inflate(R.layout.dialog_paymentsuccession, container,false);
 		String strtext=getArguments().getString("edttext");
+		Discounts = getArguments().getDouble("Discounts");
 		buyerName = getArguments().getString("buyername");
 		buyerPhone = getArguments().getString("buyerPhone");
 		PayType = getArguments().getString("PayType");
@@ -159,6 +182,8 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 		int id =saveUser();
 
 
+
+		regis.setDiscount(Discounts);
         if(ShopSetting==null){}
 		else {
 			printReceipt();
@@ -169,12 +194,14 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 		}
 		regis.setCurrentSaleBuyerID(id);
 		regis.setCurrentSalePayType(PayType);
+
 		regis.endSale(DateTimeStrategy.getCurrentTime());
 		saleFragment.update();
 		reportFragment.update();
 		buyerName ="";
 		buyerPhone="";
 		PayType ="";
+		Discounts=0.0;
 		this.dismiss();
 	}
 
@@ -267,41 +294,10 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 			else {
 				if (ShopSetting.bluetoothAddress.equals("")) {
 				} else {
-					SendDataByte(Command.ESC_Init);
-					SendDataByte(("Invoice Number:" + regis.getCurrentSale().getId() + "\n").getBytes());
-					SendDataByte(("Date : " + DateTimeStrategy.getCurrentTime() + "\n").getBytes());
-					SendDataByte(("Customer:" + buyerName + "\n").getBytes());
-					Command.ESC_Align[2] = 0x01;
-					SendDataByte(Command.ESC_Align);
-					SendDataByte(PrinterCommand.POS_Set_UnderLine(2));
-					Command.GS_ExclamationMark[2] = 0x10;
-					SendDataByte(Command.GS_ExclamationMark);
-					SendDataByte((ShopSetting.printerHeader + "\n").getBytes());
-					Command.GS_ExclamationMark[2] = 0x00;
-					SendDataByte(Command.GS_ExclamationMark);
-
-//				SendDataByte((+"\n").getBytes());
-					Command.ESC_Align[2] = 0x00;
-					SendDataByte(Command.ESC_Align);
-					SendDataByte(("Name        Qty Price   Total\n").getBytes());//.getBytes(),
-					SendDataByte(PrinterCommand.POS_Set_UnderLine(0));
-					SendDataByte(LF);
-					SendDataByte((getProducts()).getBytes());
-					SendDataByte(LF);
-					SendDataByte(LF);
-
-//				SendDataByte(PrinterCommand.POS_Set_UnderLine(2));
-//				SendDataByte(getTotals().getBytes());
-					SendDataByte(String.format("Tendered by: \n").getBytes());
-					SendDataByte(("  "+PayType+"  \n\n").getBytes());
-					SendDataByte(getTotals().getBytes());
-					SendDataByte(LF);
-					SendDataByte(("GST Number:" + ShopSetting.vatnumber).getBytes());
-					SendDataByte(LF);
-					SendDataString(ShopSetting.printerFooter);
-					SendDataByte(LF);
-					SendDataByte(PrinterCommand.POS_Set_PrtAndFeedPaper(48));
-					SendDataByte(PrinterCommand.POS_Set_PrtInit());
+					PrintNow();
+					if(ShopSetting.PrintDupReceipt) {
+						PrintNow();
+					}
 				}
 			}
 			}
@@ -311,11 +307,50 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 		}
 	}
 
+	private void PrintNow() {
+
+
+		SendDataByte(Command.ESC_Init);
+		SendDataByte(("Invoice Number:" + regis.getCurrentSale().getId() + "\n").getBytes());
+		SendDataByte(("Date : " + DateTimeStrategy.getCurrentTime() + "\n").getBytes());
+		SendDataByte(("Customer:" + buyerName + "\n").getBytes());
+		Command.ESC_Align[2] = 0x01;
+		SendDataByte(Command.ESC_Align);
+		SendDataByte(PrinterCommand.POS_Set_UnderLine(2));
+		Command.GS_ExclamationMark[2] = 0x10;
+		SendDataByte(Command.GS_ExclamationMark);
+		SendDataByte((ShopSetting.ShopName + "\n").getBytes());
+		Command.GS_ExclamationMark[2] = 0x00;
+		SendDataByte(Command.GS_ExclamationMark);
+
+		SendDataByte((ShopSetting.AddressLine1+"\n").getBytes());
+		SendDataByte((ShopSetting.AddressLine2+"\n").getBytes());
+
+//				SendDataByte((+"\n").getBytes());
+		Command.ESC_Align[2] = 0x00;
+		SendDataByte(Command.ESC_Align);
+		SendDataByte(("Name        Qty Price   Total\n").getBytes());//.getBytes(),
+		SendDataByte(PrinterCommand.POS_Set_UnderLine(0));
+		SendDataByte(LF);
+		SendDataByte((getProducts()).getBytes());
+		SendDataByte(LF);
+		SendDataByte(LF);
+
+//				SendDataByte(PrinterCommand.POS_Set_UnderLine(2));
+//				SendDataByte(getTotals().getBytes());
+		SendDataByte(String.format("Tendered by: \n").getBytes());
+		SendDataByte(("  "+PayType+"  \n\n").getBytes());
+		SendDataByte((getTotals()+"\n").getBytes());
+		SendDataByte(("GST Number:" + ShopSetting.vatnumber+"\n").getBytes());
+		SendDataByte((ShopSetting.printerFooter+"\n").getBytes());
+		SendDataByte((" \n").getBytes());
+	}
+
 
 	public String buildSMSReceipt()
 	{
 		StringBuilder s = new StringBuilder();
-		s.append(ShopSetting.printerHeader + "\n");
+		s.append(ShopSetting.ShopName + "\n");
 		s.append("Invoice Number:" +regis.getCurrentSale().getId()+"\n");//.getBytes());
 		s.append("Date : "+DateTimeStrategy.getCurrentTime()+"\n");//.getBytes());
 		s.append("Customer:"+ buyerName+"\n");
@@ -325,7 +360,10 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 		s.append(String.format("Tendered by: \n"));
 		s.append("  "+PayType+" \n\n");
 		s.append(getTotals()+"\n");
-		s.append("GST Number:"+ShopSetting.vatnumber+"\n");
+		if(ShopSetting.vatnumber.equals("")){}
+		else {
+			s.append("GST Number:" + ShopSetting.vatnumber + "\n");
+		}
 		s.append(ShopSetting.printerFooter);
 
 		return s.toString();
@@ -337,8 +375,46 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 
 		StringBuilder prodSB = new StringBuilder();
 		prodSB.append(padText("SubTotal",22)+ String.valueOf(regis.getSubTotal())+"\n");
-		prodSB.append(padText("Tax",22)+ String.valueOf(regis.getTaxTotal())+"\n");
-		prodSB.append(padText("Total",22)+String.valueOf(regis.getTotal())+"\n");
+
+
+		if(PrintTranGST){
+			regis.setTranTrax(PrintTranGST);
+			Double NewSubTotal = regis.getSubTotal();
+			regis.setSubTotal(NewSubTotal);
+			Double CGST = round(((NewSubTotal * CGSTTranTax) / 100),2);
+			regis.setCGST(CGST);
+			Double SGST = round(((NewSubTotal * SGSTTranTax) / 100),2);
+			regis.setSGST(SGST);
+			regis.setTaxTotal(CGST+SGST);
+			prodSB.append(padText("Discount",22)+String.valueOf(regis.getDiscounts())+"\n");
+			regis.setTotal(NewSubTotal+ CGST+SGST);
+
+			prodSB.append(padText("CGST"+"("+String.valueOf(CGSTTranTax)+")",20)+ String.valueOf(CGST)+"\n");
+			prodSB.append(padText("SGST"+"("+String.valueOf(SGSTTranTax)+")",20)+ String.valueOf(SGST)+"\n");
+			prodSB.append(padText("Total",22)+String.valueOf(round(regis.getTotalVal()-regis.getDiscounts(),2))+"\n");
+		}
+		else if(PrintGST){
+			prodSB.append(padText("Tax", 22) + String.valueOf(regis.getTaxTotal()) + "\n");
+			prodSB.append(padText("Total",22)+String.valueOf(regis.getTotal())+"\n");
+			if(Discounts>0) {
+				prodSB.append(padText("Discounts", 22) + String.valueOf(regis.getDiscounts())+ "\n");
+				prodSB.append(padText("Total(After Disc)", 20) + String.valueOf(regis.getTotal()-regis.getDiscounts())+ "\n");
+			}
+		}
+		else
+		{
+//			prodSB.append()
+			prodSB.append(padText("Tax", 22) + String.valueOf(regis.getTaxTotal()) + "\n");
+
+			prodSB.append(padText("Total",22)+String.valueOf(regis.getTotal())+"\n");
+			if(Discounts>0) {
+				prodSB.append(padText("Discounts", 20) + String.valueOf(regis.getDiscounts())+"\n");
+				prodSB.append(padText("Total(After Disc)", 20) + String.valueOf(regis.getTotal() - regis.getDiscounts()));
+			}
+
+		}
+
+
 
 		//.toString()+"\n");
 		//prodSB.append(padText("Total",26)+ taxutil.round(Total,2).toString()+"\n");
@@ -350,6 +426,9 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 
 	public String getProducts() {
 
+//		Boolean PrintGST = false;
+
+
 		StringBuilder prodSB = new StringBuilder();
 //                    PrinterCommand.POS_Set_UnderLine(1),
 //                    PrinterCommand.POS_S_Align(1),
@@ -358,13 +437,29 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 
 		for (LineItem p : regis.getCurrentSale().getAllLineItem()) {
 			Double PItemTotal = round(p.getTotalPriceAtSale(),2);// * p.count;
-			Double PItemTax = round(p.getTotalTaxAtSale(),1);
+			Double PItemTax = round(p.getTotalTaxAtSale(),2);
 
-			p.getProduct().getTaxid();
+			int taxid = p.getProduct().getTaxid();
+
+            taxSettings t = new taxSettings();
+            if(taxid==-1){}
+            else {
+                 t = taxsetting.get(taxid-1);
+            }
 
 
 			prodSB.append(padTextProd(p.getProduct().getName(),12)+" "+padText(String.valueOf(p.getQuantity()),3) +padText(String.valueOf(round(p.getPriceAtSale(),2)),8)
-					+padText(String.valueOf(PItemTotal),8));
+					+padText(String.valueOf(PItemTotal),8)+ "\n");
+
+			if(PrintGST)
+			{
+				prodSB.append(padTextProd("(CGST)"+String.valueOf(round((t.taxpercent/2),2))+'%',15)
+						+String.valueOf(round((PItemTax/2),2))+"\n");
+				prodSB.append(padTextProd("(SGST)"+String.valueOf(round((t.taxpercent/2),2))+'%',15)
+						+String.valueOf(round((PItemTax/2),2))+"\n");
+			}
+
+
 ////                padText(pr.product_name);
 //			prodSB.append(padText(p.getProduct().getName(),12)+" "+padText(String.valueOf(p.getQuantity()),3) +padText(String.valueOf(round(p.getPriceAtSale(),1)),7)
 //					+ padText(PItemTax.toString(),4) +padText(PItemTotal.toString(),7));

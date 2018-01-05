@@ -12,7 +12,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -88,7 +89,8 @@
             android:theme="@style/AppThemeNoTitleBar" />
         <activity android:name=".ui.mainui.SaveDBtoDrive_Activity" />
         <!-- <activity android:name=".ui.mainui.SaveDBtoDrive_Activity1"/> -->
-        <activity android:name=".ShowSalesGraph"></activity>
+        <activity android:name=".ShowSalesGraph" />
+        <activity android:name=".ui.mainui.exportimport"></activity>
     </application>
 
 </manifest>

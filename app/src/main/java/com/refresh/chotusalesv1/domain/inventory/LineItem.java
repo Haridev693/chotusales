@@ -3,6 +3,8 @@ package com.refresh.chotusalesv1.domain.inventory;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.refresh.chotusalesv1.techicalservices.taxutil.round;
+
 /**
  * LineItem of Sale.
  * 
@@ -99,8 +101,8 @@ public class LineItem {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", product.getName());
 		map.put("quantity", quantity + "");
-		map.put("tax",getTotalTaxAtSale()+"");
-		map.put("price", getTotalPriceAtSale() + "");
+		map.put("tax",round(getTotalTaxAtSale(),2)+"");
+		map.put("price", round(getTotalPriceAtSale(),2) + "");
 		return map;
 
 	}

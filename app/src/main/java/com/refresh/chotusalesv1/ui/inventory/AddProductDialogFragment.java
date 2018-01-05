@@ -67,6 +67,7 @@ public class AddProductDialogFragment extends DialogFragment {
 		AddInv = new Inventory(getActivity().getApplicationContext());
 		dataStat = new DatabaseStat(getActivity().getApplicationContext());
 
+
 		taxSettings t = new taxSettings();
 
 		t._id =-1;
@@ -88,6 +89,7 @@ public class AddProductDialogFragment extends DialogFragment {
 				false);
 		
 		res = getResources();
+
 
 		taxSpinner = (Spinner) v.findViewById(R.id.taxSpinner);
 		barcodeBox = (EditText) v.findViewById(R.id.barcodeBox);

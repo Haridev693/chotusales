@@ -64,6 +64,16 @@ import java.util.Map;
                                              final Bundle metadata) {
 
 
+//
+////                newAttributes = new PrintAttributes.Builder().setMediaSize()
+//
+//            PrintAttributes printAttrs = new PrintAttributes.Builder().
+//                    setColorMode(PrintAttributes.COLOR_MODE_COLOR).
+//                    setMediaSize(PrintAttributes.MediaSize.ISO_A4).
+//                    setResolution(new PrintAttributes.Resolution("zooey", PRINT_SERVICE, 300, 300)).
+//                    setMinMargins(PrintAttributes.Margins.NO_MARGINS).
+//                    build();
+
             mPdfDocument = new PrintedPdfDocument(mPrintContext, newAttributes);
 
             mWrittenPages = new SparseIntArray();

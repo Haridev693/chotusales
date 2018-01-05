@@ -38,6 +38,8 @@ public class DashboardScreen extends AppCompatActivity implements View.OnClickLi
     ImageButton loadtaxSettings;
     @BindView(R.id.dbsettings)
     ImageButton dbSettings;
+//    @BindView(R.id.exportimport)
+//    ImageButton exporti;
 
 //    @BindView(R.id.help) ImageButton helpButton;
 
@@ -62,6 +64,7 @@ public class DashboardScreen extends AppCompatActivity implements View.OnClickLi
         loadSettings.setOnClickListener(this);
         loadtaxSettings.setOnClickListener(this);
         dbSettings.setOnClickListener(this);
+//        exporti.setOnClickListener(this);
 //        helpButton.setOnClickListener(this);
 
 
@@ -106,9 +109,12 @@ public class DashboardScreen extends AppCompatActivity implements View.OnClickLi
 
             }
 
-//            case R.id.help:
+//            case R.id.exportimport:
 //            {
-//                sendLogcatMail(this);
+//                Intent newActivity = new Intent(DashboardScreen.this,
+//                        exportimport.class);
+//                startActivity(newActivity);
+//
 //                break;
 //            }
 

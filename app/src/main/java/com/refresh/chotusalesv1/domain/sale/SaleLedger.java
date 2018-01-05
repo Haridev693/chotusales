@@ -54,7 +54,7 @@ public class SaleLedger {
 			return saleDao.getAllSale();
 	}
 
-	public String getBuyerName(int id)
+	public BuyerClass getBuyerName(int id)
 	{
 		return saleDao.getBuyer(id);
 //		return "";

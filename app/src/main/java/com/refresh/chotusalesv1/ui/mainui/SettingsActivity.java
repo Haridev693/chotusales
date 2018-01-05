@@ -85,9 +85,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.btnCancel)
     Button Cancel;
 
-    @BindView(R.id.CheckEnablePrinter)
-    CheckBox enablePrinter;
-
     @BindView(R.id.VatNumber)
     EditText vatnumber;
 
@@ -96,11 +93,41 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.printerFooter)
     EditText printerFooter;
 
+    @BindView(R.id.Shopname)
+    EditText ShopName;
+
+    @BindView(R.id.EdtCGSTPercent)
+    EditText EdtCGSTPercent;
+
+    @BindView(R.id.EdtSGSTPercent)
+    EditText EdtSGSTPercent;
+
+
+    @BindView(R.id.CheckPrintGSTProds)
+    CheckBox CheckPrintGSTProds;
+
+    @BindView(R.id.CheckPrintGSTtranTax)
+    CheckBox CheckPrintTranGST;
+
+    @BindView(R.id.CheckDupReceipt)
+    CheckBox CheckDupReceipt;
+
+
+    @BindView(R.id.Addressline1)
+    EditText AddressLine1;
+
+
+    @BindView(R.id.Addressline2)
+    EditText AddressLine2;
+
+
+    @BindView(R.id.CheckEnablePrinter)
+    CheckBox enablePrinter;
+
     @BindView(R.id.printerHeader)
     EditText printerHeader;
 
     private smsapiops SMSChecker;
-
 
 
     @BindView(R.id.SMSKey) EditText SMSKey;
@@ -148,6 +175,10 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         checkSMSenabled.setOnClickListener(this);
 
+        CheckPrintGSTProds.setOnClickListener(this);
+
+        CheckPrintTranGST.setOnClickListener(this);
+
         btncheckUnits.setOnClickListener(this);
 
         ASettings = new Settings();
@@ -155,6 +186,15 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         Retrofit r  = connectivity.buildSMSRetrofit();
 
         SMSChecker = r.create(smsapiops.class);
+
+        SMSUserName.setEnabled(false);
+        SMSKey.setEnabled(false);
+        SMSSenderID.setEnabled(false);
+
+        EdtSGSTPercent.setEnabled(false);
+        EdtCGSTPercent.setEnabled(false);
+
+
 
 
 
@@ -183,11 +223,28 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 printerFooter.setText(ASettings.printerFooter);
                 bluetoothAdress.setText(ASettings.bluetoothAddress);
                 if(ASettings.SMSenabled) {
+                    SMSKey.setEnabled(true);
+                    SMSSenderID.setEnabled(true);
+                    SMSUserName.setEnabled(true);
                     SMSKey.setText(ASettings.SMSKey);
                     SMSSenderID.setText(ASettings.SMSSenderID);
                     SMSUserName.setText(ASettings.SMSUsername);
                 }
                 checkSMSenabled.setChecked(ASettings.SMSenabled);
+                CheckDupReceipt.setChecked(ASettings.PrintDupReceipt);
+                CheckPrintTranGST.setChecked(ASettings.CheckPrintTranGST);
+                CheckPrintGSTProds.setChecked(ASettings.CheckPrintGSTProds);
+                if(CheckPrintTranGST.isChecked()) {
+                    EdtSGSTPercent.setEnabled(true);
+                    EdtCGSTPercent.setEnabled(true);
+                    EdtCGSTPercent.setText(String.valueOf(ASettings.CGSTPercent));
+                    EdtSGSTPercent.setText(String.valueOf(ASettings.SGSTPercent));
+                }
+                ShopName.setText(ASettings.ShopName);
+                AddressLine1.setText(ASettings.AddressLine1);
+                AddressLine2.setText(ASettings.AddressLine2);
+
+
             }
 //            ASettings.
         }
@@ -388,17 +445,33 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.checkSMSenabled:{
                 if(checkSMSenabled.isChecked()){
-                    SMSUserName.setVisibility(View.VISIBLE);
-                    SMSKey.setVisibility(View.VISIBLE);
-                    SMSSenderID.setVisibility(View.VISIBLE);
+                    SMSUserName.setEnabled(true);
+                    SMSKey.setEnabled(true);
+                    SMSSenderID.setEnabled(true);
                 }
                 else
                 {
-                    SMSUserName.setVisibility(View.GONE);
-                    SMSKey.setVisibility(View.GONE);
-                    SMSSenderID.setVisibility(View.GONE);
+                    SMSUserName.setEnabled(false);
+                    SMSKey.setEnabled(false);
+                    SMSSenderID.setEnabled(false);
 
                 }
+            }
+
+            case R.id.CheckPrintGSTtranTax:{
+
+                if(CheckPrintTranGST.isChecked())
+                {
+                    EdtSGSTPercent.setEnabled(true);
+                    EdtCGSTPercent.setEnabled(true);
+
+                }
+                else
+                {
+                    EdtSGSTPercent.setEnabled(false);
+                    EdtCGSTPercent.setEnabled(false);
+                }
+
             }
 
             case R.id.btncheckUnits:{
@@ -452,55 +525,14 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         HashMap<String,String> K=  mOrderSession.getUserDetails();
         String email = K.get(KEY_EMAIL);
-        Settings s = new Settings();
-
-
-
+        Settings s = AssignSettings();//new Settings();
+        s.userid = email;
         if(ASettings.userid==null) {
-
-            s.vatnumber = vatnumber.getText().toString();
-            s.printerHeader = printerHeader.getText().toString();
-            s.printerFooter = printerFooter.getText().toString();
-            s.bluetoothAddress = bluetoothAdress.getText().toString();
-            s.SMSenabled = checkSMSenabled.isChecked();
-
-            if(checkSMSenabled.isChecked()) {
-                s.SMSKey = SMSKey.getText().toString();
-                s.SMSSenderID = SMSSenderID.getText().toString();
-                s.SMSUsername = SMSUserName.getText().toString();
-            }
-            else
-            {
-                s.SMSKey = "";//SMSKey.getText().toString();
-                s.SMSSenderID = "";//SMSSenderID.getText().toString();
-                s.SMSUsername = "";//SMSUserName.getText().toString();
-            }
-
-            s.userid = email;
             d.settingDaoD.addSettings(s);
         }
         else
         {
-            s.vatnumber = vatnumber.getText().toString();
-            s.printerHeader = printerHeader.getText().toString();
-            s.printerFooter = printerFooter.getText().toString();
-            s.bluetoothAddress = bluetoothAdress.getText().toString();
-            if(checkSMSenabled.isChecked()) {
-                s.SMSKey = SMSKey.getText().toString();
-                s.SMSSenderID = SMSSenderID.getText().toString();
-                s.SMSUsername = SMSUserName.getText().toString();
-            }
-            else
-            {
-                s.SMSKey = "";//SMSKey.getText().toString();
-                s.SMSSenderID = "";//SMSSenderID.getText().toString();
-                s.SMSUsername = "";//SMSUserName.getText().toString();
-            }
-            s.SMSenabled = checkSMSenabled.isChecked();
-
-            s.userid =email;
             s._id = ASettings._id;
-//            ASettings.userid = ASettings.userid;
            if( d.settingDaoD.updateSettings(s._id,s))
            {
                Toast.makeText(SettingsActivity.this,"Updated settings",Toast.LENGTH_SHORT).show();
@@ -510,11 +542,53 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
            }
         }
 
-//       content.put("start_time", .toString());
-//        content.put("status", "ON PROCESS");
-//        content.put("payment", "n/a");
-//        content.put("total", "0.0");
-//        content.put("orders", "0");
-        //content.put("end_time", startTime.toString());
+    }
+
+    private Settings AssignSettings() {
+
+        Settings s = new Settings();
+        s.vatnumber = vatnumber.getText().toString();
+        s.printerHeader = printerHeader.getText().toString();
+        s.printerFooter = printerFooter.getText().toString();
+        s.bluetoothAddress = bluetoothAdress.getText().toString();
+        s.SMSenabled = checkSMSenabled.isChecked();
+        s.PrintDupReceipt = CheckDupReceipt.isChecked();//(ASettings.PrintDupReceipt);
+
+        if(checkSMSenabled.isChecked()) {
+            s.SMSKey = SMSKey.getText().toString();
+            s.SMSSenderID = SMSSenderID.getText().toString();
+            s.SMSUsername = SMSUserName.getText().toString();
+        }
+        else
+        {
+            s.SMSKey = "";//SMSKey.getText().toString();
+            s.SMSSenderID = "";//SMSSenderID.getText().toString();
+            s.SMSUsername = "";//SMSUserName.getText().toString();
+        }
+
+        s.ShopName = ShopName.getText().toString();
+        s.AddressLine1 = AddressLine1.getText().toString();
+        s.AddressLine2 = AddressLine2.getText().toString();
+        s.CheckPrintGSTProds = CheckPrintGSTProds.isChecked();
+        s.CheckPrintTranGST = CheckPrintTranGST.isChecked();
+
+        if(CheckPrintTranGST.isChecked())
+        {
+            try {
+                s.CGSTPercent = Double.parseDouble(EdtCGSTPercent.getText().toString());
+                s.SGSTPercent = Double.parseDouble(EdtSGSTPercent.getText().toString());
+            }
+            catch(NumberFormatException e)
+            {
+                Log.i("Settings","NumberFormatException "+ e.getMessage());
+            }
+        }
+        else
+        {
+            s.CGSTPercent =0.0;
+            s.SGSTPercent =0.0;
+        }
+
+        return s;
     }
 }

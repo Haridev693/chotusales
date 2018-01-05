@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.refresh.chotusalesv1.ui.mainui.exportimport"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="20sp"
+            android:text="Products"
+            android:gravity="center"
+            android:background="#f4d598"
+            android:textColor="#000"
+            android:textStyle="bold"/>
+
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Export Products"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:background="@drawable/btn_green"
+                android:id="@+id/btnexport"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:background="#d4afaf"/>
+            <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.2"/>-->
+
+        </LinearLayout>
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Import Products"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:background="@drawable/btn_red"
+                android:id="@+id/btnimport"/>
+
+        <!--</LinearLayout>-->
+
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="20sp"
+            android:text="Reports"
+            android:gravity="center"
+            android:background="#f4d598"
+            android:textColor="#000"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+</LinearLayout>

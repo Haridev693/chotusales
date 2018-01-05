@@ -33,7 +33,7 @@ import static com.refresh.chotusalesv1.techicalservices.sessionmanager.KEY_EMAIL
 public class PaymentFragmentDialog extends DialogFragment {
 	
 	private TextView totalPrice;
-	private EditText input, buyerName, buyerPhone;
+	private EditText input, buyerName, buyerPhone,EdtDiscount;
 	private Settings ShopSetting = new Settings();
 	private Button clearButton;
 	private Button confirmButton;
@@ -43,6 +43,7 @@ public class PaymentFragmentDialog extends DialogFragment {
 	private Spinner PayTypeSpinner;
 	private sessionmanager mOrderSession;
 	private DatabaseStat DBStat;
+	private Double Discounts;
 
 	/**
 	 * Construct a new PaymentFragmentDialog.
@@ -64,9 +65,13 @@ public class PaymentFragmentDialog extends DialogFragment {
 		input = (EditText) v.findViewById(R.id.dialog_saleInput);
 		totalPrice = (TextView) v.findViewById(R.id.payment_total);
 
+		EdtDiscount = (EditText) v.findViewById(R.id.EdtDiscount);
+
 		mOrderSession = new sessionmanager(getActivity().getApplicationContext());
 		HashMap<String, String> K = mOrderSession.getUserDetails();
 		String email = K.get(KEY_EMAIL);
+
+		Discounts= 0.0;
 
 //		regis.getCurrentSale().getAllLineItem();
 //		regis.getTotal();
@@ -119,6 +124,9 @@ public class PaymentFragmentDialog extends DialogFragment {
 			public void onClick(View v) {
 				
 				String inputString = input.getText().toString();
+
+				if(EdtDiscount.length()>0)
+				Discounts = Double.parseDouble(EdtDiscount.getText().toString());
 				
 				if (inputString.equals("")) {
 					Toast.makeText(getActivity().getBaseContext(), getResources().getString(R.string.please_input_all), Toast.LENGTH_SHORT).show();
@@ -144,13 +152,14 @@ public class PaymentFragmentDialog extends DialogFragment {
 						return;
 					}
 				}
-				double a = Double.parseDouble(strtext);
+				double a = Double.parseDouble(strtext)-Discounts;
 				double b = Double.parseDouble(inputString);
 				if (b < a) {
 					Toast.makeText(getActivity().getBaseContext(), getResources().getString(R.string.need_money) + " " + (b - a), Toast.LENGTH_SHORT).show();
 				} else {
 					Bundle bundle = new Bundle();
 					bundle.putString("edttext", b - a + "");
+					bundle.putDouble("Discounts", Discounts);
 					bundle.putString("buyername",buyerName.getText().toString());
 					bundle.putString("buyerPhone",buyerPhone.getText().toString());
 					bundle.putString("PayType", PayTypeSpinner.getSelectedItem().toString());

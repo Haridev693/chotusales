@@ -18,21 +18,28 @@ public class QuickLoadSale extends Sale {
 	private String PayType;
 	
 	/**
-	 * 
 	 * @param id ID of this sale.
 	 * @param startTime
 	 * @param endTime
 	 * @param status
 	 * @param total
 	 * @param orders numbers of lineItem in this Sale.
+	 * @param trantax
+	 * @param subtotal
+	 * @param discounts
 	 */
-	public QuickLoadSale(int id, String startTime, String endTime, String status, Double total, Double tax, Integer orders, Integer buyerid, String PayType) {
-		super(id, startTime, endTime, status, null,"");
+	public QuickLoadSale(int id, String startTime, String endTime, String status, Double total, Double tax, Integer orders, Integer buyerid, Boolean trantax, String PayType, Double subtotal, Double discounts) {
+		super(id, startTime, endTime, status, null,"",total,trantax, discounts);
 		this.total = total;
 		this.tax = tax;
 		this.orders = orders;
 		this.buyerid = buyerid;
 		this.PayType = PayType;
+		this.setTranTax(trantax);
+		this.Total = total;
+		this.SubTotal = subtotal;
+		this.setDiscount(discounts);
+//		this.SubTotal = SubTotal;
 	}
 	
 	@Override

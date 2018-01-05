@@ -6,6 +6,7 @@ import android.content.Context;
 import com.refresh.chotusalesv1.domain.DateTimeStrategy;
 import com.refresh.chotusalesv1.domain.inventory.LineItem;
 import com.refresh.chotusalesv1.domain.inventory.Product;
+import com.refresh.chotusalesv1.domain.sale.BuyerClass;
 import com.refresh.chotusalesv1.domain.sale.QuickLoadSale;
 import com.refresh.chotusalesv1.domain.sale.Sale;
 import com.refresh.chotusalesv1.techicalservices.AndroidDatabase;
@@ -33,7 +34,7 @@ public class SaleDaoAndroid implements SaleDao {
 	}
 
 	@Override
-	public Sale initiateSale(String startTime) {
+	public Sale initiateSale(String startTime, Boolean trantax) {
 		ContentValues content = new ContentValues();
 		content.put("start_time", startTime.toString());
 		content.put("status", "ON PROCESS");
@@ -41,6 +42,8 @@ public class SaleDaoAndroid implements SaleDao {
 		content.put("total", "0.0");
 		content.put("subtotal", "0.0");
 		content.put("buyerid", -1);
+        content.put("discount","0.0");
+		content.put("trantax",trantax);
 		content.put("tax", "0.0");
 		content.put("orders", "0");
 		content.put("end_time", startTime.toString());
@@ -56,10 +59,20 @@ public class SaleDaoAndroid implements SaleDao {
 		content.put("_id", sale.getId());
 		content.put("status", "ENDED");
 		content.put("payment", "n/a");
-		content.put("total", sale.getTotal());
-		content.put("subtotal", sale.getSubTotal());
-		content.put("tax", sale.getTaxTotal());
+		content.put("trantax", sale.getTranTax());
+		if(sale.getTranTax()){
+			content.put("total", sale.Total);
+			content.put("subtotal", sale.SubTotal);
+			content.put("tax", sale.Tax);
+		}
+		else {
+			content.put("total", sale.getTotal());
+			content.put("subtotal", sale.getSubTotal());
+			content.put("tax", sale.getTaxTotal());
+		}
+		content.put("discount",sale.getDiscount());
 		content.put("orders", sale.getOrders());
+//		content.put()
 		content.put("start_time", sale.getStartTime());
 		content.put("end_time", endTime);
 		content.put("buyerid", sale.getBuyerid());
@@ -125,7 +138,10 @@ public class SaleDaoAndroid implements SaleDao {
 							content.getAsDouble("tax"),
 							content.getAsInteger("orders"),
 							content.getAsInteger("buyerid"),
-							content.getAsString("PayType")
+							content.getAsInteger("trantax")==1,
+							content.getAsString("PayType"),
+							content.getAsDouble("subtotal"),
+							content.getAsDouble("discount")
 					)
 			);
 		}
@@ -151,7 +167,10 @@ public class SaleDaoAndroid implements SaleDao {
 					content.getAsString("end_time"),
 					content.getAsString("status"),
 					getLineItem(content.getAsInteger("_id")),
-					content.getAsString("PayType"))
+					content.getAsString("PayType"),
+					content.getAsDouble("total"),
+					content.getAsInteger("trantax")==1,
+					content.getAsDouble("discount"))
 			);
 		}
 		return list.get(0);
@@ -219,18 +238,22 @@ public class SaleDaoAndroid implements SaleDao {
 	}
 
 	@Override
-	public String getBuyer(int id) {
+	public BuyerClass getBuyer(int id) {
 
 		String queryString = "SELECT * FROM " + DatabaseContents.TABLE_BUYERS + " WHERE _id = " + id;
 
-		String buyername = "";
+		BuyerClass buyer = new BuyerClass();
+		buyer.id = id;
+		buyer.Buyername = "";
+//		String buyerPhone =
 		List<Object> objectList = database.select(queryString);
 
 //		List<Sale> list = new ArrayList<Sale>();
 		for (Object object : objectList) {
 			ContentValues content = (ContentValues) object;
-			buyername = content.getAsString("buyername");
+			buyer.Buyername = content.getAsString("buyername");
+			buyer.BuyerPhone = content.getAsString("buyerphone");//, buyerphone);
 		}
-		return buyername;
+		return buyer;
 	}
 }

@@ -1,6 +1,7 @@
 package com.refresh.chotusalesv1.techicalservices.sale;
 
 import com.refresh.chotusalesv1.domain.inventory.LineItem;
+import com.refresh.chotusalesv1.domain.sale.BuyerClass;
 import com.refresh.chotusalesv1.domain.sale.Sale;
 
 import java.util.Calendar;
@@ -17,9 +18,10 @@ public interface SaleDao {
 	/**
 	 * Initiates a new Sale.
 	 * @param startTime time that Sale initiated.
+	 * @param trantax
 	 * @return Sale that initiated
 	 */
-	Sale initiateSale(String startTime);
+	Sale initiateSale(String startTime, Boolean trantax);
 
 	/**
 	 * End Sale
@@ -91,7 +93,7 @@ public interface SaleDao {
 
 	int addBuyer(String buyername, String buyerphone);
 
-	String getBuyer(int id);
+	BuyerClass getBuyer(int id);
 
 
 }

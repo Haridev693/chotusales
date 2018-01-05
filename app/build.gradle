@@ -21,9 +21,11 @@ android {
 dependencies {
     compile files('libs/achartengine-1.1.0.jar')
     compile files('libs/android-integration-2.0-supportv4.jar')
-    compile 'com.android.support:support-v4:25.3.1'
+
     //    compile 'com.github.athingunique:ddbs:0.0.5'
     compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.github.rustamg:file-dialogs:1.0'
+    compile 'org.apache.poi:poi:3.11'
     compile 'com.android.support:gridlayout-v7:25.3.1'
     compile 'com.google.android.gms:play-services-auth:11.0.4'
     compile 'com.google.android.gms:play-services-drive:11.0.4'
@@ -36,7 +38,6 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.jjoe64:graphview:4.2.1'
-    compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

@@ -6,6 +6,7 @@
     android:padding="10dp"
     android:orientation="vertical" >
 
+
     <LinearLayout
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
@@ -45,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:hint="Enter buyer name" />
     </android.support.design.widget.TextInputLayout>
 
@@ -62,10 +63,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:inputType="phone"
             android:hint="Enter buyer phone" />
     </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#fff">
+
+        <EditText
+            android:id="@+id/EdtDiscount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textSize="18sp"
+            android:hint="Enter Discount Amount"
+            android:inputType="numberDecimal"/>
+    </android.support.design.widget.TextInputLayout>
+
+
     <!--</LinearLayout>-->
 
 
@@ -80,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:text="@string/cash"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:id="@+id/PayTypeSpinner"/>
 
         <EditText
@@ -104,7 +124,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_yellow"
             android:text="@string/cancel"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/confirmButton"
@@ -114,7 +134,9 @@
             android:layout_weight="1"
             android:background="@drawable/btn_green"
             android:text="@string/confirm"
-            android:textSize="20sp" >
+            android:textSize="18sp" >
         </Button>
     </LinearLayout>
+
+    <!--</ScrollView>-->
 </LinearLayout>

@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.refresh.chotusalesv1.R;
 import com.refresh.chotusalesv1.domain.DateTimeStrategy;
+import com.refresh.chotusalesv1.domain.sale.BuyerClass;
 import com.refresh.chotusalesv1.domain.sale.Sale;
 import com.refresh.chotusalesv1.domain.sale.SaleLedger;
 import com.refresh.chotusalesv1.techicalservices.PDFUtil;
@@ -36,6 +37,7 @@ import java.util.List;
 import java.util.Map;
 
 import static android.content.Context.PRINT_SERVICE;
+import static com.refresh.chotusalesv1.techicalservices.taxutil.round;
 
 /**
  * UI for showing sale's record.
@@ -200,8 +202,10 @@ public class ReportFragment extends UpdatableFragment implements PDFUtil.PDFUtil
 
 		saleList = new ArrayList<Map<String, String>>();
 		for (Sale sale : list) {
-			String buyername = getBuyerName(sale.getBuyerid());
+			String buyername = getBuyerName(sale.getBuyerid()).Buyername;
+			String buyerPhone = getBuyerName(sale.getBuyerid()).BuyerPhone;
 			sale.SetBuyername(buyername);
+			sale.setBuyerPhone(buyerPhone);
 			saleList.add(sale.toMap());
 
 //			sale.getBuyerid();
@@ -287,7 +291,7 @@ public class ReportFragment extends UpdatableFragment implements PDFUtil.PDFUtil
 		return map;
 	}
 
-	private String getBuyerName(int buyerid) {
+	private BuyerClass getBuyerName(int buyerid) {
 		return saleLedger.getBuyerName(buyerid);
 	}
 
@@ -334,13 +338,18 @@ public class ReportFragment extends UpdatableFragment implements PDFUtil.PDFUtil
 		double total = 0;
 		double taxTotal =0;
 		for (Sale sale : list) {
-			total += sale.getTotal();
+			if(sale.getTranTax()){
+				total+= sale.Total- sale.getDiscount();
+			}
+			else {
+				total += sale.getTotal()- sale.getDiscount();
+			}
 			taxTotal += sale.getTaxTotal();
 		}
 
-		TaxTotal= String.valueOf(taxTotal);
+		TaxTotal= String.valueOf(round(taxTotal,2));
 		
-		totalBox.setText(total + "");
+		totalBox.setText(round(total,2) + "");
 		showList(list);
 	}
 	

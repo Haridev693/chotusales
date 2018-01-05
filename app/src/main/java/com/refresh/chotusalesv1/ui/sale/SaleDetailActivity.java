@@ -35,6 +35,7 @@ public class SaleDetailActivity extends AppCompatActivity{
 	private int saleId;
 	private SaleLedger saleLedger;
     private String PayType;
+	private TextView DiscountBox;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -98,6 +99,7 @@ public class SaleDetailActivity extends AppCompatActivity{
 		initiateActionBar();
 		
 		totalBox = (TextView) findViewById(R.id.totalBox);
+		DiscountBox = (TextView) findViewById(R.id.discountBox);
 		TenderType = (TextView) findViewById(R.id.TenderType);
 		dateBox = (TextView) findViewById(R.id.dateBox);
 		lineitemListView = (ListView) findViewById(R.id.lineitemList);
@@ -133,7 +135,14 @@ public class SaleDetailActivity extends AppCompatActivity{
 	 * Update UI.
 	 */
 	public void update() {
-		totalBox.setText(sale.getTotal() + "");
+		if(sale.getTranTax()) {
+			totalBox.setText(sale.Total- sale.getDiscount() + "");
+		}
+		else
+		{
+			totalBox.setText(sale.getTotal()- sale.getDiscount() + "");
+		}
+		DiscountBox.setText(String.valueOf(sale.getDiscount()));
 		dateBox.setText(sale.getEndTime() + "");
         TenderType.setText(sale.getPayType());
 		showList(sale.getAllLineItem());

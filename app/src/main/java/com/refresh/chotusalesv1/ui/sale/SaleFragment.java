@@ -28,8 +28,12 @@ import com.refresh.chotusalesv1.ui.component.UpdatableFragment;
 import com.refresh.chotusalesv1.ui.mainui.MainActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.refresh.chotusalesv1.domain.inventory.productdetail.round;
+import static com.refresh.chotusalesv1.techicalservices.sessionmanager.KEY_EMAIL;
 
 //import android.app.AlertDialog;
 
@@ -52,6 +56,8 @@ public class SaleFragment extends UpdatableFragment {
 	private sessionmanager mOrderSession;
 	private DatabaseStat DBStat;
 	private Settings ShopSetting;
+	private TextView subtotalPrice,taxPrice;
+	private Boolean TrantaxEnable;
 
 	/**
 	 * Construct a new SaleFragment.
@@ -74,11 +80,28 @@ public class SaleFragment extends UpdatableFragment {
 		mOrderSession = new sessionmanager(getActivity().getApplicationContext());
 		register =new Register(getActivity().getApplicationContext());
 
+		HashMap<String,String> K=  mOrderSession.getUserDetails();
+		String email = K.get(KEY_EMAIL);
+		TrantaxEnable =false;
+
+		if(email==null) {}
+		else{
+			ShopSetting = DBStat.settingDaoD.getSettings(email).get(0);
+
+			if(ShopSetting==null){}
+			else if(ShopSetting.CheckPrintTranGST) {
+				TrantaxEnable = ShopSetting.CheckPrintTranGST;
+			}
+		}
+
+
 		View view = inflater.inflate(R.layout.layout_sale, container, false);
 		
 		res = getResources();
 		saleListView = (ListView) view.findViewById(R.id.sale_List);
 		totalPrice = (TextView) view.findViewById(R.id.totalPrice);
+		subtotalPrice = (TextView) view.findViewById(R.id.subtotalPrice);
+		taxPrice = (TextView) view.findViewById(R.id.taxPrice);
 		clearButton = (Button) view.findViewById(R.id.clearButton);
 		endButton = (Button) view.findViewById(R.id.endButton);
 		
@@ -196,11 +219,32 @@ public class SaleFragment extends UpdatableFragment {
 	public void update() {
 		if(register.hasSale()){
 			showList(register.getCurrentSale().getAllLineItem());
-			totalPrice.setText(register.getTotal() + "");
+			if(TrantaxEnable) {
+
+				register.setTranTrax(TrantaxEnable);
+				Double NewSubTotal = register.getSubTotal();
+cvghj ''				register.setSubTotal(NewSubTotal);
+				Double CGST = round(((NewSubTotal * ShopSetting.CGSTPercent) / 100),2);
+				register.setCGST(CGST);
+				Double SGST = round(((NewSubTotal * ShopSetting.SGSTPercent) / 100),2);
+				register.setSGST(SGST);
+				register.setTaxTotal(round(CGST+SGST,2));
+				register.setTotal(round(NewSubTotal+CGST+SGST,2));
+				subtotalPrice.setText(round(register.getSubTotalVal(),2)+"");
+				taxPrice.setText(round(register.getTaxTotalVal(),2)+"");
+				totalPrice.setText(round(register.getTotalVal(),2)  + "");
+			}
+			else {
+				subtotalPrice.setText(round(register.getSubTotal(),2) + "");
+				taxPrice.setText(round(register.getTaxTotal(),2)+"");
+				totalPrice.setText(round(register.getTotal(),2) + "");
+			}
 		}
 		else{
 			showList(new ArrayList<LineItem>());
 			totalPrice.setText("0.00");
+			subtotalPrice.setText("0.00");
+			taxPrice.setText("0.00");
 		}
 	}
 	

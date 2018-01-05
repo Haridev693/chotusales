@@ -34,6 +34,14 @@ public class SettingsDaoAndroid implements SettingsDao{
         content.put("printerHeader",set.printerHeader);
         content.put("printerFooter",set.printerFooter);
         content.put("bluetoothAddress",set.bluetoothAddress);
+        content.put("ShopName",set.ShopName);
+        content.put("PrintDupReceipt",set.PrintDupReceipt);
+        content.put("AddressLine1",set.AddressLine1);
+        content.put("AddressLine2",set.AddressLine2);
+        content.put("CheckPrintGSTProds", set.CheckPrintGSTProds);
+        content.put("CheckPrintTranGST", set.CheckPrintTranGST);
+        content.put("CGSTPercent",set.CGSTPercent);
+        content.put("SGSTPercent",set.SGSTPercent);
         content.put("userid",set.userid);
         content.put("SMSKey",set.SMSKey);
         content.put("SMSSenderID",set.SMSSenderID);
@@ -55,6 +63,14 @@ public class SettingsDaoAndroid implements SettingsDao{
         content.put("printerHeader",set.printerHeader);
         content.put("printerFooter",set.printerFooter);
         content.put("bluetoothAddress",set.bluetoothAddress);
+        content.put("ShopName",set.ShopName);
+        content.put("AddressLine1",set.AddressLine1);
+        content.put("AddressLine2",set.AddressLine2);
+        content.put("PrintDupReceipt",set.PrintDupReceipt);
+        content.put("CheckPrintGSTProds", set.CheckPrintGSTProds);
+        content.put("CheckPrintTranGST", set.CheckPrintTranGST);
+        content.put("CGSTPercent",set.CGSTPercent);
+        content.put("SGSTPercent",set.SGSTPercent);
         content.put("userid",set.userid);
         content.put("SMSKey",set.SMSKey);
         content.put("SMSSenderID",set.SMSSenderID);
@@ -89,6 +105,15 @@ public class SettingsDaoAndroid implements SettingsDao{
                 s.SMSSenderID = content.getAsString("SMSSenderID");
                 s.SMSUsername = content.getAsString("SMSUsername");
                 s.SMSenabled= content.getAsInteger("SMSenabled")==1;
+                s.PrintDupReceipt = content.getAsInteger("PrintDupReceipt")==1;
+
+                s.ShopName =content.getAsString("ShopName");//,set.ShopName);
+                s.AddressLine1 = content.getAsString("AddressLine1");//,set.AddressLine1);
+                s.AddressLine2 = content.getAsString("AddressLine2");//,set.AddressLine2);
+                s.CheckPrintGSTProds = content.getAsInteger("CheckPrintGSTProds")==1;// set.CheckPrintGSTProds);
+                s.CheckPrintTranGST = content.getAsInteger("CheckPrintTranGST")==1;//, set.CheckPrintTranGST);
+                s.CGSTPercent = content.getAsDouble("CGSTPercent");//,set.CGSTPercent);
+                s.SGSTPercent = content.getAsDouble("SGSTPercent");//,set.SGSTPercent);
                 s._id = content.getAsInteger("_id");
                 list.add(s);
             }

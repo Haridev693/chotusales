@@ -19,7 +19,56 @@ import java.util.List;
  */
 public class AndroidDatabase extends SQLiteOpenHelper implements Database {
 
-	private static final int DATABASE_VERSION = 5;
+	private static final int DATABASE_VERSION = 9;
+
+	private static String AddShop =
+			"ALTER TABLE " +DatabaseContents.TABLE_SETTINGS+
+					" ADD COLUMN ShopName TEXT DEFAULT ''";
+
+	private static String AddAddrline1 ="ALTER TABLE " +DatabaseContents.TABLE_SETTINGS+
+			" ADD COLUMN AddressLine1 TEXT DEFAULT ''";
+
+	private static String AddAddrline2 ="ALTER TABLE " +DatabaseContents.TABLE_SETTINGS+
+
+			" ADD COLUMN AddressLine2 TEXT DEFAULT ''";
+
+	private static String PrintGSTProds ="ALTER TABLE " +DatabaseContents.TABLE_SETTINGS+
+
+			" ADD COLUMN CheckPrintGSTProds INT DEFAULT 0";
+
+	private static String CheckPrintTran ="ALTER TABLE " +DatabaseContents.TABLE_SETTINGS+
+
+			" ADD COLUMN CheckPrintTranGST INT DEFAULT 0";
+
+	private static String CGSTPer ="ALTER TABLE " +DatabaseContents.TABLE_SETTINGS+
+
+			" ADD COLUMN CGSTPercent DOUBLE DEFAULT 0";
+
+	private static String SGSTPer ="ALTER TABLE " +DatabaseContents.TABLE_SETTINGS+
+
+			" ADD COLUMN SGSTPercent DOUBLE DEFAULT 0";
+
+	private static String AddDupReceipt ="ALTER TABLE " +DatabaseContents.TABLE_SETTINGS+
+
+			" ADD COLUMN PrintDupReceipt INT DEFAULT 0";
+
+
+
+	private static String AddDiscount ="ALTER TABLE " +DatabaseContents.TABLE_SALE+
+
+			" ADD COLUMN discount DOUBLE DEFAULT 0";
+
+	private static String AddTranTax ="ALTER TABLE " +DatabaseContents.TABLE_SALE+
+
+			" ADD COLUMN trantax Boolean DEFAULT 0";
+
+	//        s.ShopName = ShopName.getText().toString();
+//        s.AddressLine1 = AddressLine1.getText().toString();
+//        s.AddressLine2 = AddressLine2.getText().toString();
+//        s.CheckPrintGSTProds = CheckPrintGSTProds.isChecked();
+//        s.CheckPrintTranGST = CheckPrintTranGST.isChecked();
+//            s.CGSTPercent = Double.valueOf(EdtCGSTPercent.getText().toString());
+//            s.SGSTPercent = Double.valueOf(EdtSGSTPercent.getText().toString());
 
 	/**
 	 * Constructs a new AndroidDatabase.
@@ -162,6 +211,26 @@ public class AndroidDatabase extends SQLiteOpenHelper implements Database {
 		String AddPayType = "ALTER TABLE " +DatabaseContents.TABLE_SALE+" ADD COLUMN PayType TEXT";
 
 		database.execSQL(AddPayType);
+//
+		database.execSQL(AddShop);
+
+		database.execSQL(AddAddrline1);
+
+		database.execSQL(AddAddrline2);
+
+		database.execSQL(CheckPrintTran);
+//
+		database.execSQL(PrintGSTProds);
+
+		database.execSQL(CGSTPer);
+
+		database.execSQL(SGSTPer);
+
+		database.execSQL(AddDupReceipt);
+
+		database.execSQL(AddDiscount);
+
+		database.execSQL(AddTranTax);
 	}
 
 	@Override
@@ -189,11 +258,35 @@ public class AndroidDatabase extends SQLiteOpenHelper implements Database {
 
 			case 4:
 
-				String AddPayType = "ALTER TABLE " +DatabaseContents.TABLE_SALE+" ADD COLUMN PayType TEXT";
+				String AddPayType = "ALTER TABLE " + DatabaseContents.TABLE_SALE + " ADD COLUMN PayType TEXT";
 
 				database.execSQL(AddPayType);
 
+			case 5:
 
+				//
+				database.execSQL(AddShop);
+
+				database.execSQL(AddAddrline1);
+
+				database.execSQL(AddAddrline2);
+
+				database.execSQL(CheckPrintTran);
+//
+				database.execSQL(PrintGSTProds);
+
+				database.execSQL(CGSTPer);
+
+				database.execSQL(SGSTPer);
+
+
+			case 6:
+				database.execSQL(AddDupReceipt);
+
+			case 7:
+				database.execSQL(AddDiscount);
+			case 8:
+				database.execSQL(AddTranTax);
 		}
 
 //		if(oldVersion==1)

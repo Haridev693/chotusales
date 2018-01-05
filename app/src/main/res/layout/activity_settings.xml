@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textSize="20sp"
-        android:text="General Settings"
+        android:text="Receipt Settings"
         android:gravity="center"
         android:background="#f4d598"
         android:textColor="#000"
@@ -38,6 +38,23 @@
         <!--android:text="Printer Header"/>-->
 
 
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Disable Printer"
+            android:textSize="20sp"
+            android:id="@+id/CheckEnablePrinter"
+
+            />
+
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Print Merchant Receipt"
+            android:textSize="20sp"
+            android:id="@+id/CheckDupReceipt"
+            />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -49,9 +66,54 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text|textMultiLine"
-            android:lines="3"
+            android:lines="1"
             android:hint="@string/enter_printer_header"/>
     </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#fff">
+            <EditText android:id="@+id/Shopname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textMultiLine"
+                android:lines="1"
+                android:hint="Shop name"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#fff">
+            <EditText android:id="@+id/Addressline1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textMultiLine"
+                android:lines="1"
+                android:hint="Address line1"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#fff">
+            <EditText android:id="@+id/Addressline2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textMultiLine"
+                android:lines="1"
+                android:hint="Address line2"/>
+        </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -63,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text|textMultiLine"
-            android:lines="3"
+            android:lines="1"
             android:hint="@string/enter_printer_footer"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -103,21 +165,62 @@
         <EditText android:id="@+id/VatNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text|number"
-            android:lines="3"
+            android:inputType="text"
+            android:lines="1"
             android:hint="@string/enter_vat_number"
             />
     </android.support.design.widget.TextInputLayout>
 
 
+
+
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Disable Printer"
+            android:text="Print GST Tax for Products"
             android:textSize="20sp"
-            android:id="@+id/CheckEnablePrinter"
-
+            android:id="@+id/CheckPrintGSTProds"
             />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Print GST Transaction Tax"
+            android:textSize="20sp"
+            android:id="@+id/CheckPrintGSTtranTax"
+            />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#fff">
+            <EditText android:id="@+id/EdtCGSTPercent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:lines="1"
+                android:hint="Enter CGST Percentage"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#fff">
+            <EditText android:id="@+id/EdtSGSTPercent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:lines="1"
+                android:hint="Enter SGST Percentage"
+                />
+        </android.support.design.widget.TextInputLayout>
+
 
 
         <TextView
@@ -157,10 +260,11 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="#fff">
+            android:background="#fff"
+            android:layout_weight="1">
             <EditText android:id="@+id/SMSKey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -173,7 +277,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="#fff">

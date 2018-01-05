@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                android:src="@drawable/chotusaleslogo"
+                android:src="@drawable/chotusalesnewlogod"
                 android:layout_gravity="center"
                 android:contentDescription="Hellp"/>
 
@@ -96,6 +96,7 @@
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
+                android:background="@drawable/btn_green"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"

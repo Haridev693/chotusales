@@ -74,7 +74,7 @@
     <string name="bt_not_enabled_leaving">Bluetooth not enabled leaving</string>
     <string name="enter_printer_header">Enter printer header</string>
     <string name="enter_printer_footer">Enter printer Footer</string>
-    <string name="enter_vat_number">Enter VAT Number</string>
+    <string name="enter_vat_number">Enter GST Number</string>
     <string name="save_settings">Save Settings</string>
     <string name="btncancel">Cancel</string>
     <string name="tax_name">Tax name</string>
@@ -85,6 +85,8 @@
     <string name="print">Print</string>
     <string name="payment_method">Payment Method:</string>
     <string name="ok">Ok</string>
+    <string name="fileselected">selected file is </string>
+    <string name="sub_total">Sub Total</string>
 
 
     <string-array name="period">

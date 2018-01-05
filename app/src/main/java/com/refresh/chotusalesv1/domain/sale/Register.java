@@ -3,14 +3,18 @@ package com.refresh.chotusalesv1.domain.sale;
 import android.content.Context;
 
 import com.refresh.chotusalesv1.domain.DateTimeStrategy;
+import com.refresh.chotusalesv1.domain.Settings;
 import com.refresh.chotusalesv1.domain.inventory.LineItem;
 import com.refresh.chotusalesv1.domain.inventory.Product;
 import com.refresh.chotusalesv1.domain.inventory.Stock;
+import com.refresh.chotusalesv1.staticpackage.DatabaseStat;
 import com.refresh.chotusalesv1.techicalservices.Database;
 import com.refresh.chotusalesv1.techicalservices.inventory.InventoryDao;
 import com.refresh.chotusalesv1.techicalservices.inventory.InventoryDaoAndroid;
 import com.refresh.chotusalesv1.techicalservices.sale.SaleDao;
 import com.refresh.chotusalesv1.techicalservices.sale.SaleDaoAndroid;
+
+import static com.refresh.chotusalesv1.techicalservices.taxutil.round;
 
 /**
  * Handles all Sale processes.
@@ -19,20 +23,26 @@ import com.refresh.chotusalesv1.techicalservices.sale.SaleDaoAndroid;
  *
  */
 public class Register {
-//	private static Register instance = null;
+	private DatabaseStat DBSTAT;
+	//	private static Register instance = null;
 	private SaleDao saleDao = null;
 	private Stock stock = null;
 	private InventoryDao inventoryDao;
 	
 	private static Sale currentSale;
 	private Database db;
-	
-	public Register(Context c){
+
+	private Settings receiptSettings;
+//    public boolean setTrantax;
+
+    public Register(Context c){
 //		if (!isDaoSet()) {
 //			throw new NoDaoSetException();
 //		}
 //		this.db =  new AndroidDatabase(context);
 		inventoryDao = new InventoryDaoAndroid(c);
+		DBSTAT = new DatabaseStat(c);
+//		DbStat =
 //		 = new SettingsDao(c);
 		stock = new Stock(inventoryDao);
 		saleDao = new SaleDaoAndroid(c);
@@ -63,13 +73,14 @@ public class Register {
 	/**
 	 * Initiates a new Sale.
 	 * @param startTime time that sale created.
+	 * @param trantax
 	 * @return Sale that created.
 	 */
-	public Sale initiateSale(String startTime) {
+	public Sale initiateSale(String startTime, Boolean trantax) {
 		if (currentSale != null) {
 			return currentSale;
 		}
-		currentSale = saleDao.initiateSale(startTime);
+		currentSale = saleDao.initiateSale(startTime, trantax);
 		return currentSale;
 	}
 	
@@ -79,9 +90,9 @@ public class Register {
 	 * @param quantity quantity of product that added.
 	 * @return LineItem of Sale that just added.
 	 */
-	public LineItem addItem(Product product, int quantity, double tax) {
+	public LineItem addItem(Product product, int quantity, double tax, Boolean Trantax) {
 		if (currentSale == null)
-			initiateSale(DateTimeStrategy.getCurrentTime());
+			initiateSale(DateTimeStrategy.getCurrentTime(), Trantax);
 
 		LineItem lineItem = currentSale.addLineItem(product, quantity, tax);
 		
@@ -116,6 +127,67 @@ public class Register {
 		return currentSale.getSubTotal();
 	}
 
+	public void setCGST(double CGST)
+    {
+        if (currentSale == null) {}
+        else
+        currentSale.setCGST(CGST);
+    }
+
+    public void setSGST(double SGST)
+    {
+        if (currentSale == null) {}
+        else
+        currentSale.setSGST(SGST);
+    }
+
+    public void setTotal(double total)
+    {
+        if (currentSale == null) {}
+        else
+            currentSale.setTotal(total);
+
+    }
+
+    public Double getTotalVal()
+	{
+		if (currentSale == null) {return 0.0;}
+		else
+			return currentSale.Total;
+	}
+
+	public Double getSubTotalVal()
+	{
+		if (currentSale == null) {return 0.0;}
+		else
+			return currentSale.SubTotal;
+	}
+
+
+	public Double getTaxTotalVal()
+	{
+		if (currentSale == null) {return 0.0;}
+		else
+			return round(currentSale.Tax,2);
+	}
+
+    public void setSubTotal(double subtotal){
+        if (currentSale == null) {}
+        else
+            currentSale.setSubTotal(subtotal);
+    }
+
+    public void setTaxTotal(double taxTotal){
+        if (currentSale == null) {}
+        else
+            currentSale.setTax(taxTotal);
+    }
+
+	public double getDiscounts(){
+        if(currentSale == null) return 0;
+        return currentSale.getDiscount();
+    }
+
 	/**
 	 * End the Sale.
 	 * @param endTime time that Sale ended.
@@ -145,7 +217,7 @@ public class Register {
 	 */
 	public Sale getCurrentSale() {
 		if (currentSale == null)
-			initiateSale(DateTimeStrategy.getCurrentTime());
+			initiateSale(DateTimeStrategy.getCurrentTime(), false);
 		return currentSale;
 	}
 
@@ -216,5 +288,14 @@ public class Register {
 			cancleSale();
 		}
 	}
-	
+
+	public void setTranTrax(Boolean TranTax)
+    {
+        currentSale.setTranTax(TranTax);
+    }
+
+
+    public void setDiscount(Double discounts) {
+        currentSale.setDiscount(discounts);
+    }
 }

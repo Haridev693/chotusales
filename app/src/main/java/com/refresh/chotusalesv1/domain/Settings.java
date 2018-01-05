@@ -16,5 +16,13 @@ public class Settings {
     public String SMSUsername;// TEXT;
     public String SMSKey; //TEXT"
     public Boolean SMSenabled;
+    public Boolean PrintDupReceipt;
+    public String ShopName;
+    public Double CGSTPercent;
+    public Double SGSTPercent;
+    public Boolean CheckPrintGSTProds;
+    public Boolean CheckPrintTranGST;
+    public String AddressLine1;
+    public String AddressLine2;
 
 }

@@ -28,16 +28,21 @@ import com.refresh.chotusalesv1.domain.inventory.Product;
 import com.refresh.chotusalesv1.domain.inventory.ProductCatalog;
 import com.refresh.chotusalesv1.domain.inventory.productdetail;
 import com.refresh.chotusalesv1.domain.sale.Register;
+import com.refresh.chotusalesv1.staticpackage.DatabaseStat;
 import com.refresh.chotusalesv1.techicalservices.DatabaseContents;
 import com.refresh.chotusalesv1.techicalservices.DatabaseExecutor;
 import com.refresh.chotusalesv1.techicalservices.Demo;
+import com.refresh.chotusalesv1.techicalservices.sessionmanager;
 import com.refresh.chotusalesv1.ui.component.ButtonAdapter;
 import com.refresh.chotusalesv1.ui.component.UpdatableFragment;
 import com.refresh.chotusalesv1.ui.mainui.MainActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.refresh.chotusalesv1.techicalservices.sessionmanager.KEY_EMAIL;
 
 /**
  * UI for Inventory, shows list of Product in the ProductCatalog.
@@ -65,6 +70,9 @@ public class InventoryFragment extends UpdatableFragment {
 	private UpdatableFragment saleFragment;
 	private Resources res;
 	private Inventory InvF;
+	private DatabaseStat DBSTAT;
+	private sessionmanager mOrderSession;
+	private com.refresh.chotusalesv1.domain.Settings Settings;
 
 	/**
 	 * Construct a new InventoryFragment.
@@ -85,6 +93,11 @@ public class InventoryFragment extends UpdatableFragment {
 			productCatalog = InvF.getProductCatalog();
 			register = new Register(getActivity().getApplicationContext());
 			dbExec = new DatabaseExecutor(getActivity().getApplicationContext());
+			DBSTAT = new DatabaseStat(getActivity().getApplicationContext());
+		mOrderSession = new sessionmanager(getActivity().getApplicationContext());
+		HashMap<String, String> K = mOrderSession.getUserDetails();
+		String email = K.get(KEY_EMAIL);
+		Settings = DBSTAT.settingDaoD.getSettings(email).get(0);
 //		} catch (NoDaoSetException e) {
 //			e.printStackTrace();
 //		}
@@ -132,7 +145,16 @@ public class InventoryFragment extends UpdatableFragment {
 				Product p = productCatalog.getProductById(id);
 				productdetail pds = getTax(p);
 				p.setUnitPrice(pds.taxUnitPrice);
-				register.addItem(p, 1,pds.tax);
+
+				Boolean setTranTax = false;
+
+				if(Settings==null){}
+				else if(Settings.CheckPrintTranGST ==null){}
+				else
+				setTranTax = Settings.CheckPrintTranGST;
+
+//				register.setTranTrax();
+				register.addItem(p, 1,pds.tax, setTranTax);
 				saleFragment.update();
 				viewPager.setCurrentItem(1);
 			}     

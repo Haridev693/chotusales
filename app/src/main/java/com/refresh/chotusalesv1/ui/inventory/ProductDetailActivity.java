@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +29,9 @@ import com.refresh.chotusalesv1.domain.inventory.Product;
 import com.refresh.chotusalesv1.domain.inventory.ProductCatalog;
 import com.refresh.chotusalesv1.domain.inventory.ProductLot;
 import com.refresh.chotusalesv1.domain.inventory.Stock;
-import com.refresh.chotusalesv1.techicalservices.NoDaoSetException;
+import com.refresh.chotusalesv1.domain.salessettings.taxSettings;
+import com.refresh.chotusalesv1.staticpackage.DatabaseStat;
+import com.refresh.chotusalesv1.ui.component.taxSettingsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +61,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 	private ListView stockListView;
 	private String id;
 	private String[] remember;
+	private int remembertaxid;
 	private AlertDialog.Builder popDialog;
 	private LayoutInflater inflater ;
 	private Resources res;
@@ -68,7 +72,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 	private View Viewlayout;
 	private AlertDialog alert;
 	private Inventory PInv;
-	
+	private ArrayList<taxSettings> taxTypes;
+	private DatabaseStat dataStat;
+	private Spinner taxSpinner;
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
@@ -104,6 +111,15 @@ public class ProductDetailActivity extends AppCompatActivity {
 //			e.printStackTrace();
 //		}
 
+		taxSettings t = new taxSettings();
+
+		dataStat = new DatabaseStat(getApplicationContext());
+
+		taxTypes = new ArrayList<>();
+		t._id =-1;
+		t.taxname = "NoTax";
+		taxTypes.add(t);
+		taxTypes.addAll(dataStat.settingDaoD.getTaxSettings());
 		id = getIntent().getStringExtra("id");
 		product = productCatalog.getProductById(Integer.parseInt(id));
 
@@ -112,7 +128,21 @@ public class ProductDetailActivity extends AppCompatActivity {
 		nameBox.setText(product.getName());
 		priceBox.setText(product.getUnitPrice() + "");
 		barcodeBox.setText(product.getBarcode());
+		fillSpinner();
 
+	}
+
+	private void fillSpinner()
+	{
+		taxSettingsAdapter adapter = new taxSettingsAdapter(this, android.R.layout.simple_spinner_item, taxTypes);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		taxSpinner.setAdapter(adapter);
+		if(product.getTaxid()==-1){
+			taxSpinner.setSelection(0);
+		}
+		else {
+			taxSpinner.setSelection(product.getTaxid());
+		}
 	}
 
 	/**
@@ -124,6 +154,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 		setContentView(R.layout.layout_productdetail_main);
 		stockListView = (ListView) findViewById(R.id.stockListView);
 		nameBox = (EditText) findViewById(R.id.nameBox);
+		taxSpinner = (Spinner) findViewById(R.id.DtaxSpinner);
 		priceBox = (EditText) findViewById(R.id.priceBox);
 		barcodeBox = (EditText) findViewById(R.id.barcodeBox);
 		stockSumBox = (TextView) findViewById(R.id.stockSumBox);
@@ -221,9 +252,24 @@ public class ProductDetailActivity extends AppCompatActivity {
 		barcodeBox.setFocusable(false);
 		barcodeBox.setFocusableInTouchMode(false);
 		barcodeBox.setBackgroundColor(Color.parseColor("#87CEEB"));
+		taxSpinner.setFocusable(false);
+		taxSpinner.setFocusableInTouchMode(false);
+		taxSpinner.setBackgroundColor(Color.parseColor("#87CEEB"));
+		taxSpinner.setEnabled(false);
 		product.setName(nameBox.getText().toString());
 		if(priceBox.getText().toString().equals(""))
 			priceBox.setText("0.0");
+
+		int taxid =-1;
+		if(taxSpinner.getCount()>0) {
+			taxid = ((taxSettings) taxSpinner.getSelectedItem())._id;
+		}
+		else
+		{
+			taxid =-1;
+		}
+
+		product.setTaxid(taxid);
 		product.setUnitPrice(Double.parseDouble(priceBox.getText().toString()));
 		product.setBarcode(barcodeBox.getText().toString());
 		productCatalog.editProduct(product);
@@ -245,11 +291,19 @@ public class ProductDetailActivity extends AppCompatActivity {
 		barcodeBox.setFocusable(false);
 		barcodeBox.setFocusableInTouchMode(false);
 		barcodeBox.setBackgroundColor(Color.parseColor("#87CEEB"));
+		taxSpinner.setFocusable(false);
+		taxSpinner.setFocusableInTouchMode(false);
+		taxSpinner.setBackgroundColor(Color.parseColor("#87CEEB"));
+		taxSpinner.setEnabled(false);
 		submitEditButton.setVisibility(View.INVISIBLE);
 		cancelEditButton.setVisibility(View.INVISIBLE);
 		nameBox.setText(remember[0]);
 		priceBox.setText(remember[1]);
 		barcodeBox.setText(remember[2]);
+		if(remembertaxid==-1)
+			taxSpinner.setSelection(0);
+		else
+			taxSpinner.setSelection(remembertaxid);
 		openEditButton.setVisibility(View.VISIBLE);
 	}
 	
@@ -265,10 +319,23 @@ public class ProductDetailActivity extends AppCompatActivity {
 		priceBox.setBackgroundColor(Color.parseColor("#FFBB33"));
 		barcodeBox.setFocusable(true);
 		barcodeBox.setFocusableInTouchMode(true);
-		barcodeBox.setBackgroundColor(Color.parseColor("#FFBB33"));	
+		barcodeBox.setBackgroundColor(Color.parseColor("#FFBB33"));
+		taxSpinner.setEnabled(true);
+		taxSpinner.setFocusable(true);
+		taxSpinner.setFocusableInTouchMode(true);
+		taxSpinner.setBackgroundColor(Color.parseColor("#FFBB33"));
 		remember[0] = nameBox.getText().toString();
 		remember[1] = priceBox.getText().toString();
 		remember[2] = barcodeBox.getText().toString();
+		int taxid;
+		if(taxSpinner.getCount()>0) {
+			taxid = ((taxSettings) taxSpinner.getSelectedItem())._id;
+		}
+		else
+		{
+			taxid =-1;
+		}
+		remembertaxid = taxid;
 		submitEditButton.setVisibility(View.VISIBLE);
 		cancelEditButton.setVisibility(View.VISIBLE);
 		openEditButton.setVisibility(View.INVISIBLE);
