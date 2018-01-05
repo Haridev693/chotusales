@@ -53,8 +53,8 @@ public class DashboardScreen extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_screen);
 
-        mOrderSession = new sessionmanager(getApplicationContext());
-        mOrderSession.checkLogin();
+//        mOrderSession = new sessionmanager(getApplicationContext());
+//        mOrderSession.checkLogin();
 
         DateTimeStrategy.setLocale("hi", "IN");
 

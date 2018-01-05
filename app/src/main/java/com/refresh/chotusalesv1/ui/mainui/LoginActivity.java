@@ -263,26 +263,6 @@ public class LoginActivity extends Activity  {
     private void initiateCoreApp() {
         AndroidDatabase database = new AndroidDatabase(getApplicationContext());
         connectivity.globalDB =  database;
-//        InventoryDao inventoryDao = new InventoryDaoAndroid(database);
-//        SaleDao saleDao = new SaleDaoAndroid(database);
-//        SettingsDao settingDao= new SettingsDaoAndroid(database);
-
-//        DatabaseStat.settingDaoD =settingDao;
-//        DatabaseExecutor.setDatabase(database);
-//        LanguageController.setDatabase(database);
-
-//        SettingsActivity.
-
-//        Inventory i = new inventory
-
-//        DatabaseStat.setSettingsDao(settingDao);
-//        Inventory.setInventoryDao(inventoryDao);
-//        Register.setSaleDao(saleDao);
-//        SaleLedger.setSaleDao(saleDao);
-
-//        DateTimeStrategy.setLocale("th", "TH");
-      //  setLanguage(LanguageController.getInstance().getLanguage());
-
         Log.d("Core App", "INITIATE");
     }
 

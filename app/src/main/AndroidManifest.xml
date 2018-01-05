@@ -90,7 +90,8 @@
         <activity android:name=".ui.mainui.SaveDBtoDrive_Activity" />
         <!-- <activity android:name=".ui.mainui.SaveDBtoDrive_Activity1"/> -->
         <activity android:name=".ShowSalesGraph" />
-        <activity android:name=".ui.mainui.exportimport"></activity>
+        <activity android:name=".ui.mainui.exportimport"/>
+        <activity android:name=".ui.mainui.PosLoginActivity"/>
     </application>
 
 </manifest>
