@@ -72,6 +72,8 @@ public class PaymentFragmentDialog extends DialogFragment {
 		String email = K.get(KEY_EMAIL);
 
 		Discounts= 0.0;
+		ShopSetting = new Settings();
+
 
 //		regis.getCurrentSale().getAllLineItem();
 //		regis.getTotal();

@@ -6,30 +6,123 @@
     android:layout_height="match_parent"
     tools:context="com.refresh.chotusalesv1.ui.mainui.UserSettingActivity" android:orientation="vertical">
 
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:baselineAligned="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="20sp"
+        android:text="User Settings"
+        android:gravity="center"
+        android:background="#f4d598"
+        android:textColor="#000"
+        android:textStyle="bold"/>
+
+
+    <LinearLayout
+        android:baselineAligned="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.5"
+            android:background="#FFFFFF"
+            android:paddingBottom="1dip"
+            android:paddingLeft="1dip"
+            android:paddingTop="1dip" >
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5"
+                android:background="#33B5E5"
+                android:gravity="center"
+                android:paddingRight="3dp"
+                android:text="User Name"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.25"
+            android:background="#FFFFFF"
+            android:paddingBottom="1dip"
+            android:paddingLeft="1dip"
+            android:paddingTop="1dip" >
+
+            <TextView
+                android:id="@+id/taxrate"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5"
+                android:background="#33B5E5"
+                android:gravity="center"
+                android:paddingRight="3dp"
+                android:text="Pin"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.25"
+            android:background="#FFFFFF"
+            android:paddingBottom="1dip"
+            android:paddingLeft="1dip"
+            android:paddingTop="1dip" >
+
+            <TextView
+                android:id="@+id/InclusivePrice"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5"
+                android:background="#33B5E5"
+                android:gravity="center"
+                android:paddingRight="3dp"
+                android:text="Type"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+        </TableRow>
+    </LinearLayout>
+
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/useritems">
 
     </ListView>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:gravity="bottom|end">
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom|end"
-            app:fabSize="normal"
-            android:text="Add Tax"
-            android:id="@+id/btnAddUser"
-            android:src="@drawable/addicon"
-            />
     </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:gravity="bottom|end">-->
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="bottom|end"-->
+            <!--app:fabSize="normal"-->
+            <!--android:text="Add User"-->
+            <!--android:id="@+id/btnAddUser"-->
+            <!--android:src="@drawable/addicon"-->
+            <!--/>-->
+    <!--</LinearLayout>-->
 
 
 

@@ -80,17 +80,21 @@ public class SaleFragment extends UpdatableFragment {
 		mOrderSession = new sessionmanager(getActivity().getApplicationContext());
 		register =new Register(getActivity().getApplicationContext());
 
+
 		HashMap<String,String> K=  mOrderSession.getUserDetails();
 		String email = K.get(KEY_EMAIL);
 		TrantaxEnable =false;
+		ShopSetting = new Settings();
 
 		if(email==null) {}
 		else{
-			ShopSetting = DBStat.settingDaoD.getSettings(email).get(0);
+			if(DBStat.settingDaoD.getSettings(email).size()>0) {
+				ShopSetting = DBStat.settingDaoD.getSettings(email).get(0);
 
-			if(ShopSetting==null){}
-			else if(ShopSetting.CheckPrintTranGST) {
-				TrantaxEnable = ShopSetting.CheckPrintTranGST;
+				if (ShopSetting == null) {
+				} else if (ShopSetting.CheckPrintTranGST) {
+					TrantaxEnable = ShopSetting.CheckPrintTranGST;
+				}
 			}
 		}
 

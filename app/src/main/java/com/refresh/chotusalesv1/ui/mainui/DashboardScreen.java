@@ -3,27 +3,42 @@ package com.refresh.chotusalesv1.ui.mainui;
 import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.refresh.chotusalesv1.BuildConfig;
 import com.refresh.chotusalesv1.R;
+import com.refresh.chotusalesv1.apiops.usersapiop;
 import com.refresh.chotusalesv1.domain.DateTimeStrategy;
+import com.refresh.chotusalesv1.domain.salessettings.userSettings;
+import com.refresh.chotusalesv1.responseclasses.responseParser;
 import com.refresh.chotusalesv1.techicalservices.sessionmanager;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static com.refresh.chotusalesv1.techicalservices.connectivity.buildRetrofit;
+import static com.refresh.chotusalesv1.techicalservices.sessionmanager.KEY_EMAIL;
 
 
 public class DashboardScreen extends AppCompatActivity implements View.OnClickListener{
@@ -38,22 +53,33 @@ public class DashboardScreen extends AppCompatActivity implements View.OnClickLi
     ImageButton loadtaxSettings;
     @BindView(R.id.dbsettings)
     ImageButton dbSettings;
-//    @BindView(R.id.exportimport)
-//    ImageButton exporti;
+    @BindView(R.id.usersettings)
+    ImageButton usersettings;
 
+    @BindView(R.id.LogOutC)
+    ImageButton LogOut;
+
+    private userSettings userDetail;
 //    @BindView(R.id.help) ImageButton helpButton;
 
+
+//        List<String> "admin"//</item>
+//        <item>user</item>
+//    </string-array>
 
 
     private sessionmanager mOrderSession;
     private BluetoothAdapter mBluetoothAdapter;
+    private usersapiop users;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_screen);
 
-//        mOrderSession = new sessionmanager(getApplicationContext());
+        mOrderSession = new sessionmanager(getApplicationContext());
+        userDetail = mOrderSession.getCurrentUser();
 //        mOrderSession.checkLogin();
 
         DateTimeStrategy.setLocale("hi", "IN");
@@ -64,6 +90,12 @@ public class DashboardScreen extends AppCompatActivity implements View.OnClickLi
         loadSettings.setOnClickListener(this);
         loadtaxSettings.setOnClickListener(this);
         dbSettings.setOnClickListener(this);
+        usersettings.setOnClickListener(this);
+        LogOut.setOnClickListener(this);
+        Retrofit r = buildRetrofit();
+        users = r.create(usersapiop.class);
+        HashMap<String, String> K = mOrderSession.getUserDetails();
+        email = K.get(KEY_EMAIL);
 //        exporti.setOnClickListener(this);
 //        helpButton.setOnClickListener(this);
 
@@ -85,47 +117,173 @@ public class DashboardScreen extends AppCompatActivity implements View.OnClickLi
                 break;
             }
             case R.id.loadSettings:{
-                Intent newActivity = new Intent(DashboardScreen.this,
-                        SettingsActivity.class);
-                startActivity(newActivity);
+
+                if(userDetail.usertype.equals(UserTypes.admin.name())) {
+                    Intent newActivity = new Intent(DashboardScreen.this,
+                            SettingsActivity.class);
+                    startActivity(newActivity);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), R.string.dontrights,Toast.LENGTH_SHORT).show();
+                }
                 break;
             }
 
             case R.id.loadtaxsettings:{
-
+                if(userDetail.usertype.equals(UserTypes.admin.name())) {
                 Intent newActivity = new Intent(DashboardScreen.this,
                         TaxSettingActivity.class);
                 startActivity(newActivity);
+            }
+                else
+            {
+                Toast.makeText(getApplicationContext(), R.string.dontrights,Toast.LENGTH_SHORT).show();
+            }
                 break;
 
             }
             case R.id.dbsettings:
             {
-                Intent newActivity = new Intent(DashboardScreen.this,
-                        SaveDBtoDrive_Activity.class);
-                startActivity(newActivity);
+                if(userDetail.usertype.equals(UserTypes.admin.name())) {
+
+                    Intent newActivity = new Intent(DashboardScreen.this,
+                            SaveDBtoDrive_Activity.class);
+                    startActivity(newActivity);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), R.string.dontrights,Toast.LENGTH_SHORT).show();
+                }
                 break;
 
 
             }
 
-//            case R.id.exportimport:
-//            {
-//                Intent newActivity = new Intent(DashboardScreen.this,
-//                        exportimport.class);
-//                startActivity(newActivity);
-//
-//                break;
-//            }
+            case R.id.usersettings:
+            {
+                if(userDetail.usertype.equals(UserTypes.admin.name())) {
+                    Intent newActivity = new Intent(DashboardScreen.this,
+                            UserSettingActivity.class);
+                    startActivity(newActivity);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), R.string.dontrights,Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+            }
+
+            case R.id.LogOutC:
+            {
+                if(userDetail.usertype.equals(UserTypes.admin.name())) {
+                    openDetailDialog();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), R.string.dontrights,Toast.LENGTH_SHORT).show();
+                }
+            }
 
         }
 
         //SplashScreenActivity.this.finish();
     }
 
+    private void openDetailDialog() {
+        final AlertDialog.Builder quitDialog = new AlertDialog.Builder(DashboardScreen.this);
+        quitDialog.setTitle("Warning !!!!!!!!! Are you sure? you want to exit login");
+        quitDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                users.logoutUser(email,false).enqueue(complaindetailcall);
+            }
+        });
+
+        quitDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        quitDialog.show();
+    }
+
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
+    }
+
+
+
+    Callback<ResponseBody> complaindetailcall = new Callback<ResponseBody>() {
+        @Override
+        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            if (response.isSuccessful()) {
+//                showProgress(false);
+                try {
+                    if (response != null) {
+
+                        String sres = response.body().string();
+                        responseParser responseB = new responseParser();
+                        responseB =responseB.getResponse(sres);
+//                        responseParser responseB = //gson.fromJson(sres, responseParser.class);
+//                        chain c;
+
+                        if (responseB.resStatus.equals("error")) {
+//                                prodialog.hide();
+                            Toast.makeText(getApplicationContext(), responseB.resText, Toast.LENGTH_SHORT).show();
+                        } else if (responseB.resStatus.equals("success")) {
+
+                            if (!responseB.resText.isEmpty() && !response.equals(null)) {
+                                processResponse(responseB.resText);
+                            }
+                            else {
+                                Toast.makeText(getApplicationContext(), "error while processing response", Toast.LENGTH_SHORT).show();
+                            }
+//                                Toast.makeText(mContext, resp.resText, Toast.LENGTH_SHORT).show();
+//                                thanksmessagescreen();
+                        }
+
+                    }
+
+                } catch (Exception e) {
+
+                    Log.e("LoginActivityCallback",e.getMessage());
+                    Log.e("LoginActivityStackTrace",e.getStackTrace().toString());
+                }
+            }
+            else
+            {
+//                showProgress(false);
+                Toast.makeText(DashboardScreen.this,"Server is down, Please try again",Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onFailure(Call<ResponseBody> call, Throwable t) {
+//            showProgress(false);
+//            if(connectivity.isNetworkConnected(getApplicationContext()))
+//            {
+                Toast.makeText(DashboardScreen.this,"Please Check your internet again",Toast.LENGTH_SHORT).show();
+
+//            }
+//            else
+//            {
+////                Toast.makeText()
+//            }
+//            Snackbar.make(mLoginFormView,"",Snackbar.LENGTH_SHORT);
+        }
+    };
+
+    private void processResponse(String resText) {
+        if(resText=="true")///////////////
+            mOrderSession.logoutUser();
     }
 
 

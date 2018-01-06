@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="#FFFFFF"
+            android:paddingBottom="1dip"
+            android:paddingLeft="1dip" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:textColor="#000"
+                android:gravity="end"
+                android:paddingStart="1dip"
+                android:paddingEnd="3dip"
+                android:id="@+id/usernameL"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="#FFFFFF"
+            android:paddingBottom="1dip"
+            android:paddingStart="1dip" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="end"
+                android:paddingStart="1dip"
+                android:paddingEnd="3dip"
+                android:id="@+id/userpinL"/></TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="#FFFFFF"
+            android:paddingBottom="1dip"
+            android:paddingStart="1dip">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="end"
+                android:paddingStart="1dip"
+                android:paddingEnd="3dip"
+                android:id="@+id/userTypesL"/>
+        </TableRow>
+
+</LinearLayout>

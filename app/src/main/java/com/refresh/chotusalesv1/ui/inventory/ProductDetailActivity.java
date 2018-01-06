@@ -121,7 +121,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 		taxTypes.add(t);
 		taxTypes.addAll(dataStat.settingDaoD.getTaxSettings());
 		id = getIntent().getStringExtra("id");
-		product = productCatalog.getProductById(Integer.parseInt(id));
+		try {
+			product = productCatalog.getProductById(Integer.parseInt(id));
+		}
+		catch(Exception e){}
 
 		initUI(savedInstanceState);
 		remember = new String[3];
@@ -228,9 +231,6 @@ public class ProductDetailActivity extends AppCompatActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			this.finish();
-			return true;
 		case R.id.action_edit:
 			edit();
 			return true;
@@ -362,11 +362,16 @@ public class ProductDetailActivity extends AppCompatActivity {
 							res.getString(R.string.please_input_all), Toast.LENGTH_SHORT)
 							.show();
 				} else {
-					boolean success = stock.addProductLot(
-							DateTimeStrategy.getCurrentTime(), 
-							Integer.parseInt(quantityBox.getText().toString()), 
-							product, 
-							Double.parseDouble(costBox.getText().toString()));
+					boolean success = false;
+
+					try {
+						success = stock.addProductLot(
+								DateTimeStrategy.getCurrentTime(),
+								Integer.parseInt(quantityBox.getText().toString()),
+								product,
+								Double.parseDouble(costBox.getText().toString()));
+					}
+					catch(Exception e){}
 
 					if (success) {
 						Toast.makeText(ProductDetailActivity.this, res.getString(R.string.success), Toast.LENGTH_SHORT).show();

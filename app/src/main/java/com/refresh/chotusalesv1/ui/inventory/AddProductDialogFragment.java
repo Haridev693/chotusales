@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,10 +145,17 @@ public class AddProductDialogFragment extends DialogFragment {
 					{
 						taxid =-1;
 					}
-					boolean success = productCatalog.addProduct(nameBox
-							.getText().toString(), barcodeBox.getText()
-							.toString(), Double.parseDouble(priceBox.getText()
-							.toString()),taxid);
+					boolean success = false;
+
+					try {
+					 success = productCatalog.addProduct(nameBox
+								.getText().toString(), barcodeBox.getText()
+								.toString(), Double.parseDouble(priceBox.getText()
+								.toString()), taxid);
+					}
+					catch(Exception e) {
+					Log.i("AddProduct",e.getMessage());
+					}
 
 					if (success) {
 						Toast.makeText(getActivity().getBaseContext(),

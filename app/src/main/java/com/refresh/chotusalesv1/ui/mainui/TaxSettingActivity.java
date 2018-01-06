@@ -118,7 +118,13 @@ public class TaxSettingActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long myLng) {
 
-                int id = Integer.parseInt(taxList.get(position).get("id"));
+                int id =-1;
+                try {
+                   id = Integer.parseInt(taxList.get(position).get("id"));
+                }
+                catch(Exception e){
+//                    id =
+                }
 
                 showAddTax(id,position);
 
@@ -155,7 +161,10 @@ public class TaxSettingActivity extends AppCompatActivity {
         if(setItemID!=-1) {
             taxNameBox.setText(taxList.get(position).get("taxname"));
             taxpercentBox.setText(taxList.get(position).get("taxpercent"));
-            IsInclusivePrice.setChecked(Boolean.parseBoolean(taxList.get(position).get("IsPriceInclusive")));
+            try {
+                IsInclusivePrice.setChecked(Boolean.parseBoolean(taxList.get(position).get("IsPriceInclusive")));
+            }
+            catch(Exception e){}
         }
 
 
@@ -177,7 +186,10 @@ public class TaxSettingActivity extends AppCompatActivity {
                     s.taxname = taxNameBox.getText().toString();
 
                     boolean success = false;
-                    s.taxpercent = Double.parseDouble(taxpercentBox.getText().toString());
+                    try {
+                        s.taxpercent = Double.parseDouble(taxpercentBox.getText().toString());
+                    }
+                    catch(Exception e){}
                     s.IsPriceInclusive = IsInclusivePrice.isChecked();
                     if(setItemID==-1) {
                         success = dataStat.settingDaoD.addtaxSettings(s);

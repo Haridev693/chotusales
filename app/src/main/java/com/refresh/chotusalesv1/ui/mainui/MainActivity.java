@@ -40,6 +40,7 @@ import com.refresh.chotusalesv1.domain.Settings;
 import com.refresh.chotusalesv1.domain.inventory.Inventory;
 import com.refresh.chotusalesv1.domain.inventory.Product;
 import com.refresh.chotusalesv1.domain.inventory.ProductCatalog;
+import com.refresh.chotusalesv1.domain.salessettings.userSettings;
 import com.refresh.chotusalesv1.responseclasses.responseParser;
 import com.refresh.chotusalesv1.staticpackage.DatabaseStat;
 import com.refresh.chotusalesv1.techicalservices.BluetoothService;
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
 	private Settings ShopSetting;
     private usersapiop users;
     private View layoutlinear, mLogOutProgress;
+    private userSettings User;
 //	private Settings ASettings;
 //	private BluetoothService mbluetoothService;
 
@@ -175,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
 		DateTimeStrategy.setLocale("hi", "IN");
 		Retrofit r = buildRetrofit();
 		users = r.create(usersapiop.class);
+        User = new userSettings();
 
 		dbStat = new DatabaseStat(getApplicationContext());
 
@@ -205,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
 		pagerAdapter = new PagerAdapter(fragmentManager, res);
 		viewPager.setAdapter(pagerAdapter);
 		mAppSession = new sessionmanager(getApplicationContext());
+        User = mAppSession.getCurrentUser();
 		viewPager.setCurrentItem(1);
 		tabLayout.setViewPager(viewPager);
 		tabLayout.setBackground(new ColorDrawable(Color
@@ -260,16 +264,18 @@ public class MainActivity extends AppCompatActivity {
 	 * @param view
 	 */
 	public void optionOnClickHandler(View view) {
-		viewPager.setCurrentItem(0);
-		String id = view.getTag().toString();
-		productId = id;
-		try {
-			productCatalog = Minv.getProductCatalog();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(User.usertype.equals(UserTypes.admin.name())) {
+			viewPager.setCurrentItem(0);
+			String id = view.getTag().toString();
+			productId = id;
+			try {
+				productCatalog = Minv.getProductCatalog();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			product = productCatalog.getProductById(Integer.parseInt(productId));
+			openDetailDialog();
 		}
-		product = productCatalog.getProductById(Integer.parseInt(productId));
-		openDetailDialog();
 
 	}
 
@@ -390,8 +396,15 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.logout: {
-                users.logoutUser(email,false).enqueue(complaindetailcall);
+
+            case R.id.lock: {
+
+				Intent newActivity = new Intent(MainActivity.this,
+						PosLoginActivity.class);
+				startActivity(newActivity);
+//                if (User.usertype.equals(UserTypes.admin.name()))
+//                    users.logoutUser(email, false).enqueue(complaindetailcall);
+
 			}
 
 //            	setLanguage("en");

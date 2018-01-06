@@ -18,17 +18,18 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="top"
-            android:layout_weight="0.75"
+            android:layout_weight="0.60"
             android:scaleType="fitCenter"
-            android:src="@drawable/chotusaleslogo" />
+            android:src="@drawable/chotusalesnewlogoweb" />
 
 
         <com.refresh.chotusalesv1.techicalservices.KeyboardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="bottom"
-            android:layout_weight="1.25"
-            app:HintText="Enter User ID">
+            android:layout_weight="1.40"
+            app:HintText="Enter User ID"
+            android:id="@+id/keyboardView">
 
 
         </com.refresh.chotusalesv1.techicalservices.KeyboardView>
@@ -43,6 +44,7 @@
         android:onClick="onLogin"
         android:text="Login"
         android:textSize="15sp"
+        android:background="@drawable/btn_green"
         android:layout_gravity="bottom"/>
 
 </LinearLayout>

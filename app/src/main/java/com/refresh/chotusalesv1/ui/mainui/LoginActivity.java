@@ -279,7 +279,7 @@ public class LoginActivity extends Activity  {
     private void shownavigationscreen()
     {
 
-        Intent i = new Intent(this,DashboardScreen.class);
+        Intent i = new Intent(this,PosLoginActivity.class);
         startActivity(i);
     }
 

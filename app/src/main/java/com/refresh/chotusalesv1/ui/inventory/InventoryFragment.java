@@ -23,11 +23,13 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentIntegratorSupportV4;
 import com.google.zxing.integration.android.IntentResult;
 import com.refresh.chotusalesv1.R;
+import com.refresh.chotusalesv1.domain.Settings;
 import com.refresh.chotusalesv1.domain.inventory.Inventory;
 import com.refresh.chotusalesv1.domain.inventory.Product;
 import com.refresh.chotusalesv1.domain.inventory.ProductCatalog;
 import com.refresh.chotusalesv1.domain.inventory.productdetail;
 import com.refresh.chotusalesv1.domain.sale.Register;
+import com.refresh.chotusalesv1.domain.salessettings.userSettings;
 import com.refresh.chotusalesv1.staticpackage.DatabaseStat;
 import com.refresh.chotusalesv1.techicalservices.DatabaseContents;
 import com.refresh.chotusalesv1.techicalservices.DatabaseExecutor;
@@ -36,6 +38,7 @@ import com.refresh.chotusalesv1.techicalservices.sessionmanager;
 import com.refresh.chotusalesv1.ui.component.ButtonAdapter;
 import com.refresh.chotusalesv1.ui.component.UpdatableFragment;
 import com.refresh.chotusalesv1.ui.mainui.MainActivity;
+import com.refresh.chotusalesv1.ui.mainui.UserTypes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,6 +76,7 @@ public class InventoryFragment extends UpdatableFragment {
 	private DatabaseStat DBSTAT;
 	private sessionmanager mOrderSession;
 	private com.refresh.chotusalesv1.domain.Settings Settings;
+	private userSettings CurrentUser;
 
 	/**
 	 * Construct a new InventoryFragment.
@@ -96,7 +100,10 @@ public class InventoryFragment extends UpdatableFragment {
 			DBSTAT = new DatabaseStat(getActivity().getApplicationContext());
 		mOrderSession = new sessionmanager(getActivity().getApplicationContext());
 		HashMap<String, String> K = mOrderSession.getUserDetails();
+		CurrentUser = mOrderSession.getCurrentUser();
 		String email = K.get(KEY_EMAIL);
+		Settings = new Settings();
+		if(DBSTAT.settingDaoD.getSettings(email).size()>0)
 		Settings = DBSTAT.settingDaoD.getSettings(email).get(0);
 //		} catch (NoDaoSetException e) {
 //			e.printStackTrace();
@@ -124,7 +131,13 @@ public class InventoryFragment extends UpdatableFragment {
 
 		addProductButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				showPopup(v);
+				if(CurrentUser.usertype.equals(UserTypes.admin.name())) {
+					showPopup(v);
+				}
+				else{
+					Toast.makeText(getActivity().getBaseContext(), "You don't have permissions to access this",
+							Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 
@@ -157,7 +170,7 @@ public class InventoryFragment extends UpdatableFragment {
 				register.addItem(p, 1,pds.tax, setTranTax);
 				saleFragment.update();
 				viewPager.setCurrentItem(1);
-			}     
+			}
 		});
 
 		scanButton.setOnClickListener(new View.OnClickListener() {

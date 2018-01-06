@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/logout"
-        android:title="@string/logout"/>
+        android:id="@+id/lock"
+        android:title="@string/lock_device"/>
     <!--<item-->
         <!--android:id="@+id/lang_th"-->
         <!--android:title="@string/lang_th"/>-->

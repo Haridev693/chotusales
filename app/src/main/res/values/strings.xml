@@ -52,7 +52,7 @@
     <string name="title_other_devices">Other Devices</string>
     <string name="button_scan">Scan</string>
     <string name="not_connected">Not connected</string>
-    <string name="logout">LogOut</string>
+    <string name="logout">Logout</string>
     <string name="refresh">Refresh</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -102,6 +102,11 @@
         <item>Wallet</item>
     </string-array>
 
+    <string-array name="usertypes">
+        <item>admin</item>
+        <item>user</item>
+    </string-array>
+
     <string name="number_zero">0</string>
     <string name="number_one">1</string>
     <string name="number_two">2</string>
@@ -114,6 +119,8 @@
     <string name="number_nine">9</string>
     <string name="btn_clear">Clear</string>
     <string name="btn_backspace">Back</string>
+    <string name="dontrights">You don\'t have rights to access this</string>
+    <string name="lock_device">Lock Device</string>
 
     <style name="ButtonText">
         <item name="android:layout_width">fill_parent</item>

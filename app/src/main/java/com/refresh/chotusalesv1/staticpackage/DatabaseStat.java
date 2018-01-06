@@ -3,11 +3,13 @@ package com.refresh.chotusalesv1.staticpackage;
 import android.content.Context;
 
 import com.refresh.chotusalesv1.domain.salessettings.taxSettings;
+import com.refresh.chotusalesv1.domain.salessettings.userSettings;
 import com.refresh.chotusalesv1.techicalservices.BluetoothService;
 import com.refresh.chotusalesv1.techicalservices.settings.SettingsDao;
 import com.refresh.chotusalesv1.techicalservices.settings.SettingsDaoAndroid;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lenovo on 12/8/2017.
@@ -60,4 +62,7 @@ public class DatabaseStat {
         return settingDaoD.getTaxSettings();
     }
 
+    public List<userSettings> getUserSettings() {
+        return settingDaoD.getUserSettings();
+    }
 }

@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class AndroidDatabase extends SQLiteOpenHelper implements Database {
 
-	private static final int DATABASE_VERSION = 9;
+	private static final int DATABASE_VERSION = 10;
 
 	private static String AddShop =
 			"ALTER TABLE " +DatabaseContents.TABLE_SETTINGS+
@@ -61,6 +61,16 @@ public class AndroidDatabase extends SQLiteOpenHelper implements Database {
 	private static String AddTranTax ="ALTER TABLE " +DatabaseContents.TABLE_SALE+
 
 			" ADD COLUMN trantax Boolean DEFAULT 0";
+
+
+	private static String AddUsers1 ="INSERT INTO " +DatabaseContents.TABLE_USERS+" (_id,username,userpin,usertype) VALUES ("+
+
+			"1,'admin',1234,'admin')";
+
+	private static String AddUsers2 ="INSERT INTO " +DatabaseContents.TABLE_USERS+" (_id,username,userpin,usertype) VALUES ("+
+
+			"2,'user1',4567,'user')";
+
 
 	//        s.ShopName = ShopName.getText().toString();
 //        s.AddressLine1 = AddressLine1.getText().toString();
@@ -231,6 +241,10 @@ public class AndroidDatabase extends SQLiteOpenHelper implements Database {
 		database.execSQL(AddDiscount);
 
 		database.execSQL(AddTranTax);
+
+		database.execSQL(AddUsers1);
+
+		database.execSQL(AddUsers2);
 	}
 
 	@Override
@@ -287,6 +301,10 @@ public class AndroidDatabase extends SQLiteOpenHelper implements Database {
 				database.execSQL(AddDiscount);
 			case 8:
 				database.execSQL(AddTranTax);
+			case 9:
+				database.execSQL(AddUsers1);
+				database.execSQL(AddUsers2);
+
 		}
 
 //		if(oldVersion==1)

@@ -18,8 +18,9 @@ public class connectivity {
 
     //public static String hostip="http://192.168.0.111/SlimSwachhmApp/src/routes/";
 
-    public static String hostip="https://urposdemo.000webhostapp.com/chotusales/src/routes/";
+//    public static String hostip="https://urposdemo.000webhostapp.com/chotusales/src/routes/";
 
+    public static String hostip="http://shs2apicalls.pe.hu/chotusales/src/routes/";
     public static AndroidDatabase globalDB;
 
 //    public static String SMSApi="http://tra1.smsmyntraa.com/api/"; //SMS Myntra

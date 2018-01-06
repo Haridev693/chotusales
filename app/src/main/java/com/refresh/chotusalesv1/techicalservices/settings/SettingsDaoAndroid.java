@@ -148,10 +148,9 @@ public class SettingsDaoAndroid implements SettingsDao{
     @Override
     public ArrayList<userSettings> getUserSettings() {
 
-        String queryString = "SELECT * FROM " + DatabaseContents.TABLE_TAX +"'";
+        String queryString = "SELECT * FROM " + DatabaseContents.TABLE_USERS;
 //        Object obj = database.select(queryString);
         List<Object> objectList = database.select(queryString);
-        userSettings s = new userSettings();
 
         ArrayList<userSettings> list = new ArrayList<>();
 
@@ -159,6 +158,8 @@ public class SettingsDaoAndroid implements SettingsDao{
             if (object == null) {
             } else {
                 ContentValues content = (ContentValues) object;
+                userSettings s = new userSettings();
+                s._id = content.getAsInteger("_id");
                 s.username = content.getAsString("username");
                 s.usertype = content.getAsString("usertype");
                 s.userpin = content.getAsInteger("userpin");
@@ -223,7 +224,7 @@ public class SettingsDaoAndroid implements SettingsDao{
 
 
     @Override
-    public int updateuserSettings(int id, userSettings set) {
+    public Boolean updateuserSettings(int id, userSettings set) {
 
         ContentValues content = new ContentValues();
 
@@ -233,8 +234,8 @@ public class SettingsDaoAndroid implements SettingsDao{
         content.put("usertype",set.usertype);
 //        content.put("bluetoothAddress",set.bluetoothAddress);
 
-        database.update(DatabaseContents.TABLE_USERS.toString(),content);
-        return 0;
+        return database.update(DatabaseContents.TABLE_USERS.toString(),content);
+//        return 0;
     }
 
 

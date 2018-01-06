@@ -46,8 +46,10 @@ public class SaleDetailActivity extends AppCompatActivity{
 //		} catch (NoDaoSetException e) {
 //			e.printStackTrace();
 //		}
-		
-		saleId = Integer.parseInt(getIntent().getStringExtra("id"));
+		try {
+			saleId = Integer.parseInt(getIntent().getStringExtra("id"));
+		}
+		catch(Exception e){}
 		sale = saleLedger.getSaleById(saleId);
 		
 		initUI(savedInstanceState);

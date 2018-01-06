@@ -33,7 +33,7 @@ public interface SettingsDao {
 
     int adduserSettings(userSettings set);
 
-    int updateuserSettings(int id,userSettings set);
+    Boolean updateuserSettings(int id,userSettings set);
 
 
 }

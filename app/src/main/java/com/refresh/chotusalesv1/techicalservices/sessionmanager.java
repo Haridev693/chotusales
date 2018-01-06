@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import com.refresh.chotusalesv1.domain.salessettings.userSettings;
 import com.refresh.chotusalesv1.ui.mainui.LoginActivity;
 
 import java.util.HashMap;
@@ -93,6 +94,26 @@ public class sessionmanager {
         }
 
     }
+
+
+    public void writeCurrentuser( userSettings u){
+
+        editor.putString("username",u.username);
+        editor.putString("usertype",u.usertype);
+        editor.putInt("userpin", u.userpin);
+        editor.commit();
+    }
+
+
+    public userSettings getCurrentUser()
+    {
+        userSettings s = new userSettings();
+        s.username = pref.getString("username","");
+        s.usertype = pref.getString("usertype","");
+        s.userpin = pref.getInt("userpin",0);
+        return s;
+    }
+
 
 
     public void saveAccessToken(String token) {
