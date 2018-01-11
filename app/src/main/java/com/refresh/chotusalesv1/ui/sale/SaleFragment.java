@@ -27,6 +27,9 @@ import com.refresh.chotusalesv1.techicalservices.sessionmanager;
 import com.refresh.chotusalesv1.ui.component.UpdatableFragment;
 import com.refresh.chotusalesv1.ui.mainui.MainActivity;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,19 +61,28 @@ public class SaleFragment extends UpdatableFragment {
 	private Settings ShopSetting;
 	private TextView subtotalPrice,taxPrice;
 	private Boolean TrantaxEnable;
+    private EventBus bus;
 
-	/**
+
+    /**
 	 * Construct a new SaleFragment.
 	 * @param
 	 */
-	public SaleFragment(UpdatableFragment reportFragment) {
-		super();
-		this.reportFragment = reportFragment;
-	}
+//	public SaleFragment(UpdatableFragment reportFragment) {
+//		super();
+//		this.reportFragment = reportFragment;
+//	}
 
 	public SaleFragment(){
 
+		this.bus = EventBus.getDefault();
+		this.bus.register(this);
+		this.reportFragment = new ReportFragment();
 	}
+
+//	public SaleFragment(){
+//
+//	}
 
 
 	@Override
@@ -281,6 +293,14 @@ public class SaleFragment extends UpdatableFragment {
 		});
 
 		dialog.show();
+	}
+
+
+	//catch Event from fragment A
+	@Subscribe
+	public void onEvent(String event) {
+		if(event.equals("true"))
+			update();
 	}
 
 }

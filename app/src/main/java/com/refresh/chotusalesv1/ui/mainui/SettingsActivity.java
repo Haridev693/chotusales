@@ -486,11 +486,11 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private Boolean validateSettings() {
 
         Boolean valid = true;
-        if(vatnumber.getText().toString().equals(""))
-        {
-            Toast.makeText(SettingsActivity.this,"Please enter VAT number",Toast.LENGTH_SHORT).show();
-            valid= false;
-        }
+//        if(vatnumber.getText().toString().equals(""))
+//        {
+//            Toast.makeText(SettingsActivity.this,"Please enter VAT number",Toast.LENGTH_SHORT).show();
+//            valid= false;
+//        }
 
         return valid;
 

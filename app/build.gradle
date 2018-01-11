@@ -26,6 +26,7 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.github.rustamg:file-dialogs:1.0'
     compile 'org.apache.poi:poi:3.11'
+    compile 'org.greenrobot:eventbus:3.1.1'
     compile 'com.android.support:gridlayout-v7:25.3.1'
     compile 'com.google.android.gms:play-services-auth:11.0.4'
     compile 'com.google.android.gms:play-services-drive:11.0.4'

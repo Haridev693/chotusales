@@ -667,14 +667,9 @@ public class MainActivity extends AppCompatActivity {
 			super(fragmentManager);
 
 			UpdatableFragment reportFragment = new ReportFragment();
-
-//			Bundle b = new Bundle();
-//			b.putParcelable("reportFragment",reportFragment);
-
-//			Bundle b = new Bundle();
-			UpdatableFragment saleFragment = new SaleFragment(reportFragment);
-			UpdatableFragment inventoryFragment = new InventoryFragment(
-					saleFragment);
+			UpdatableFragment saleFragment = new SaleFragment();
+			UpdatableFragment inventoryFragment = new InventoryFragment();
+//			UpdatableFragment tableFragment = new tableFrament(saleFragment);
 
 			fragments = new UpdatableFragment[]{inventoryFragment, saleFragment,
 					reportFragment};

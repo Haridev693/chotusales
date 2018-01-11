@@ -43,14 +43,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-//import android.support.design.widget.Snackbar;
-//import sriharidevsoftsols.chotusales.R;
-//import sriharidevsoftsols.chotusales.apiops.usersapiop;
-//import sriharidevsoftsols.chotusales.classes.ResponseClasses.responseParser;
-//import sriharidevsoftsols.chotusales.classes.chain;
-//import sriharidevsoftsols.chotusales.serializer.BooleanSerializer;
-//import sriharidevsoftsols.chotusales.utils.sessionmanager;
-//import sriharidevsoftsols.chotusales.utils.sorryStat.connectivity;
 
 /**
  * A login screen that offers login via email/password.

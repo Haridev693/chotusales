@@ -113,7 +113,7 @@ public class EditFragmentDialog extends DialogFragment {
 	 */
 	private void end(){
 		saleFragment.update();
-		reportFragment.update();
+//		reportFragment.update();
 		this.dismiss();
 	}
 

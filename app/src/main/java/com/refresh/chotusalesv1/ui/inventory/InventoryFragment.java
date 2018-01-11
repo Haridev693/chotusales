@@ -39,6 +39,9 @@ import com.refresh.chotusalesv1.ui.component.ButtonAdapter;
 import com.refresh.chotusalesv1.ui.component.UpdatableFragment;
 import com.refresh.chotusalesv1.ui.mainui.MainActivity;
 import com.refresh.chotusalesv1.ui.mainui.UserTypes;
+import com.refresh.chotusalesv1.ui.sale.SaleFragment;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +61,7 @@ import static com.refresh.chotusalesv1.techicalservices.sessionmanager.KEY_EMAIL
 public class InventoryFragment extends UpdatableFragment {
 
 	protected static final int SEARCH_LIMIT = 0;
+	private final EventBus bus;
 	private ListView inventoryListView;
 	private ProductCatalog productCatalog;
 	private List<Map<String, String>> inventoryList;
@@ -82,9 +86,18 @@ public class InventoryFragment extends UpdatableFragment {
 	 * Construct a new InventoryFragment.
 	 * @param saleFragment
 	 */
-	public InventoryFragment(UpdatableFragment saleFragment) {
+//	public InventoryFragment(UpdatableFragment saleFragment) {
+//		super();
+//		this.saleFragment = saleFragment;
+////		Inventory
+//	}
+
+	public InventoryFragment() {
 		super();
-		this.saleFragment = saleFragment;
+		this.saleFragment = new SaleFragment();
+		this.bus = EventBus.getDefault();
+
+
 //		Inventory
 	}
 
@@ -168,7 +181,8 @@ public class InventoryFragment extends UpdatableFragment {
 
 //				register.setTranTrax();
 				register.addItem(p, 1,pds.tax, setTranTax);
-				saleFragment.update();
+				bus.post("true");
+//				saleFragment.update();
 				viewPager.setCurrentItem(1);
 			}
 		});

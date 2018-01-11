@@ -197,7 +197,7 @@ public class EndPaymentFragmentDialog extends DialogFragment  {
 
 		regis.endSale(DateTimeStrategy.getCurrentTime());
 		saleFragment.update();
-		reportFragment.update();
+//		reportFragment.update();
 		buyerName ="";
 		buyerPhone="";
 		PayType ="";
